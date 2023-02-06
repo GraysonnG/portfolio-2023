@@ -38,6 +38,7 @@
 <style>
   main {
     padding: 1em 2em;
+    padding-top: 20vh;
   }
 
   div {

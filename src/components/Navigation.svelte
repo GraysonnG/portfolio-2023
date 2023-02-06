@@ -135,6 +135,8 @@
 
 <style>
   aside {
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: center;
   }
