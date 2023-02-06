@@ -8,7 +8,7 @@
   const movePuckToRect = (rect: DOMRect) => {
     puck.style.width = `${rect.width}px`
     puck.style.height = `${rect.height}px`
-    puck.style.left = `${rect.left}px`
+    puck.style.left = `${rect.x}px`
     puck.style.top = `${rect.y}px`
   }
 
@@ -27,8 +27,6 @@
     const target = (e.target as HTMLElement)
     const rect = target.getBoundingClientRect()
 
-    console.log(e)
-
     puck.style.setProperty("border-color", getComputedStyle(target).color)
 
     movePuckToRect(rect)
@@ -41,8 +39,10 @@
   onMount(() => {
     const currentElement = document.querySelector(".active")
     if (currentElement) {
-      const rect = currentElement.getBoundingClientRect()
-      movePuckToRect(rect)
+      setTimeout(() => {
+        const rect = currentElement.getBoundingClientRect()
+        movePuckToRect(rect)
+      }, 100);
     }
 
     const unsub = page.subscribe(page => {
@@ -65,8 +65,8 @@
 
 <svelte:window on:resize={movePuckToCurrentElement}/>
 
-<aside>
-  <div class="container" class:split>
+<aside class:split>
+  <div class="container">
     <nav on:mouseleave={handleMouseOut} on:blur={() => {}}>
       <ul>
         <li>
@@ -126,9 +126,9 @@
           </a>
         </li>
       </ul>
-      <div bind:this={puck} class="puck"></div>
     </nav>
   </div>
+  <div bind:this={puck} class="puck"></div>
 </aside>
 
 
@@ -136,17 +136,37 @@
 <style>
   aside {
     position: sticky;
+    width: 100%;
     top: 0;
     display: flex;
     justify-content: center;
+    z-index: 10000;
+    isolation: isolate;
+    padding-top: 1em;
   }
 
   .container {
+    position: relative;
     width: 100%;
+  }
+
+  .container::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background-color: transparent;
+    transition: background-color 0ms 0ms;
+    pointer-events: none;
+    user-select: none;
   }
 
   nav {
     position: relative;
+    
   }
 
   .puck {
@@ -158,15 +178,15 @@
     top: 0;
     z-index: -1;
     transition: left 600ms, width 600ms, border 600ms;
-
   }
 
   ul {
     list-style: none;
     margin: 0;
-    padding: 2em;
+    padding: 0;
+    padding-block: 2em;
     display: flex;
-    gap: 4em;
+    gap: 3em;
   }
 
   a {
@@ -189,8 +209,15 @@
     flex-grow: 1;
   }
 
-  .container:not(.split) .puck {
+  aside:not(.split) .puck {
     border-color: var(--color-dark) !important;
+  }
+
+  aside:not(.split) .container::after {
+    background-color: var(--color-light);
+    transition: background-color 0ms 600ms;
+    backdrop-filter: blur(5px);
+    z-index: -2;
   }
 
   .split li:not(:first-child) > a {

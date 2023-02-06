@@ -8,13 +8,36 @@
   import img from "../assets/hero-image.avif";
 	import { shrink } from '../animations/shrink';
 	import { cubicIn } from 'svelte/easing';
+	import BigWords from '../components/BigWords.svelte';
+	import { afterNavigate } from '$app/navigation';
+	import { create_in_transition } from 'svelte/internal';
 
   const duration = 600;
   $: delay = duration + 10;
+
+  const getWords = (path: string): string[] => {
+    const home = ["front", "end"]
+
+    switch(path) {
+      case "/":
+        return home
+      default: 
+        return [path.replace("/", "")] || home
+    }
+  }
+
+  let panel: HTMLElement
+
+  afterNavigate(({from}) => {
+    if (panel && from === null) {
+      create_in_transition(panel, shrink, { direction: "right", duration: 1200 }).start()
+    }
+  })
 </script>
 
 <Navigation />
 <main>
+  
   <Transition 
     intr={{
       transition: fly,
@@ -26,19 +49,23 @@
     }}>
     <slot />
   </Transition>
+
+  
 </main>
+<BigWords words={getWords($page.url.pathname)} />
 
 {#if $page.route.id === '/'}
-  <div transition:shrink={{ direction: 'right' }}>
+  <div bind:this={panel} transition:shrink={{ direction: 'right' }}>
     <img src={img} alt="">
   </div>
 {/if}
 
 
+
 <style>
   main {
     padding: 1em 2em;
-    padding-top: 20vh;
+    padding-top: 18vh;
   }
 
   div {

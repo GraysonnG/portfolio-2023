@@ -1,4 +1,4 @@
-import type { EasingFunction } from 'svelte/transition';
+import type { EasingFunction, TransitionConfig } from 'svelte/transition';
 import { cubicInOut } from 'svelte/easing';
 
 type Direction = 'top' | 'bottom' | 'left' | 'right' | 'horizontal' | 'vertical';
@@ -10,9 +10,9 @@ interface Options {
 }
 
 export function shrink(
-	node: HTMLElement,
+	node: Element,
 	{ delay = 0, duration = 600, direction = 'top', easing = cubicInOut }: Options
-) {
+): TransitionConfig {
 	const isVertical = direction === 'top' || direction === 'bottom' || direction === 'horizontal';
 
 	return {
@@ -23,7 +23,7 @@ export function shrink(
 			const box = node.getBoundingClientRect();
 			const width = box.width;
 			const height = box.height;
-			node.style.setProperty(direction, '0');
+			(node as HTMLElement).style.setProperty(direction, '0');
 
 			return `
         width: ${isVertical ? width : width * t}px;
