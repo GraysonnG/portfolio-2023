@@ -35,28 +35,76 @@
   section {
     font-style: normal;
     text-transform: uppercase;
+    text-align: center;
   }
 
   h1 {
+    display: inline-block;
+    font-size: 4em;
     font-weight: 900;
     font-stretch: 110%;
-    font-size: 12em;
-    line-height: .9;
+    line-height: 1;
     color: var(--color-primary);
+    width: 100%;
   }
 
   p {
+    display: inline-block;
+    width: 100%;
+    margin-top: 1em;
+    position: relative;
+    left: 0.25em;
+    font-size: 1em;
     font-weight: 900;
     font-stretch: 125%;
-    font-size: 2em;
-    padding-left: 1rem;
+    max-width: 75vw;
   }
 
   .cta {
     position: relative;
-    padding-left: 1rem;
-    margin-top: 8em;
+    margin-top: 6em;
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.8em;
+  }
+
+  .cta :global(.primary) {
+    font-size: 1.1em;
+  }
+
+  @media screen and (min-width: 1200px) {
+    section {
+      text-align: start;
+    }
+
+    h1 {
+      font-weight: 900;
+      font-stretch: 110%;
+      font-size: 12em;
+      line-height: .9;
+    }
+
+    p {
+      font-weight: 900;
+      font-stretch: 125%;
+      font-size: 2em;
+      padding-left: 1rem;
+    }
+
+    .cta {
+      font-size: 1em;
+      flex-direction: row;
+      padding-left: 1rem;
+      gap: 2rem;
+      align-items: center;
+      justify-content: unset;
+    }
+
+    .cta :global(.primary) {
+      font-size: 1em;
+    }
   }
 </style>

@@ -51,6 +51,7 @@
     border-radius: 0.5rem;
     height: 100%;
     aspect-ratio: 1;
+    object-fit: cover;
   }
 
   .content {
@@ -86,5 +87,34 @@
     padding: 0.25rem 1rem;
     border-radius: 0.3rem;
     backdrop-filter: blur(5px);
+  }
+
+  @media screen and (max-width: 1200px) {
+    .card {
+      height: unset;
+      flex-direction: column;
+      width: 100%;
+      gap: 2em;
+    }
+
+    .card:nth-child(2n) {
+      flex-direction: column;
+    }
+
+    .card > img {
+      height: unset;
+      max-width: 100%;
+      max-height: 25rem;
+    }
+
+    .card :global(p) {
+      font-size: 1rem;
+      font-weight: 600;
+      opacity: 0.7;
+    }
+
+    .chips {
+      flex-wrap: wrap;
+    }
   }
 </style>

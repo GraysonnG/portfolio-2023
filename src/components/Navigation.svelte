@@ -227,11 +227,11 @@
   @media screen and (max-width: 600px) {
     aside {
       position: fixed;
+      top: unset;
       bottom: 0;
       left: 0;
       width: 100vw;
       background-color: var(--color-background);
-      box-shadow: 0 0 1em rgb(0, 0, 0, 0.5);
     }
 
     aside::before {

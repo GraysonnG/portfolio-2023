@@ -64,15 +64,15 @@
 
 <style>
   main {
-    padding: 1em 2em;
-    padding-top: 18vh;
+    padding: 1em;
+    padding-top: 5vh;
   }
 
   div {
     position: fixed;
     top: 0;
     right: 0;
-    width: 50vw;
+    width: 20vw;
     height: 100vh;
     z-index: -2;
     isolation: isolate;
@@ -94,10 +94,14 @@
     object-fit: cover;
   }
 
-
-  @media screen and (max-width: 600px) {
+  @media screen and (min-width: 1200px) {
     main {
-      padding: 1em;
+      padding: 1em 2em;
+      padding-top: 18vh;
+    }
+
+    div {
+      width: 50vw;
     }
   }
 </style>
