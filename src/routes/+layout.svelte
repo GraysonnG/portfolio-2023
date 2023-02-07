@@ -8,7 +8,7 @@
   import img from "../assets/hero-image.avif";
 	import { shrink } from '../animations/shrink';
 	import { cubicIn } from 'svelte/easing';
-	import BigWords from '../components/BigWords.svelte';
+	import Watermark from '../components/Watermark.svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { create_in_transition } from 'svelte/internal';
 
@@ -52,7 +52,7 @@
 
   
 </main>
-<BigWords words={getWords($page.url.pathname)} />
+<Watermark words={getWords($page.url.pathname)} />
 
 {#if $page.route.id === '/'}
   <div bind:this={panel} transition:shrink={{ direction: 'right' }}>
