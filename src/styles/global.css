@@ -122,14 +122,25 @@ button, .button {
   font-size: 1em;
 }
 
-button:hover, .button:hover {
-  top: -3px;
-  transform: scale(1.05);
-}
-
 button.primary, .button.primary {
+  animation: pulse 1s ease-in infinite alternate;
   border-color: transparent;
   background-color: var(--color-primary);
   color: var(--color-white);
   box-shadow: 0 0.5rem 1rem var(--color-primary-500-25);
+}
+
+button:hover, .button:hover {
+  animation: none;
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1.05);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }

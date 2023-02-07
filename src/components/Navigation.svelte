@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
 	import { onMount } from "svelte";
+	import isSplit from "../helpers/splithelper";
   $: path = $page.url.pathname;
 
   let puck: HTMLElement;
@@ -59,7 +60,7 @@
     }
   })
 
-  $: split = $page.route.id === "/"
+  $: split = isSplit($page.route.id)
 
 </script>
 
@@ -148,6 +149,7 @@
   .container {
     position: relative;
     width: 100%;
+    padding-inline: 1em;
   }
 
   .container::after {

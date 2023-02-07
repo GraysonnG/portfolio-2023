@@ -11,6 +11,7 @@
 	import Watermark from '../components/Watermark.svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { create_in_transition } from 'svelte/internal';
+	import isSplit from '../helpers/splithelper';
 
   const duration = 600;
   $: delay = duration + 10;
@@ -54,7 +55,7 @@
 </main>
 <Watermark words={getWords($page.url.pathname)} />
 
-{#if $page.route.id === '/'}
+{#if isSplit($page.route.id)}
   <div bind:this={panel} transition:shrink={{ direction: 'right' }}>
     <img src={img} alt="">
   </div>

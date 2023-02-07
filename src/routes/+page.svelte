@@ -92,6 +92,8 @@
       font-stretch: 125%;
       font-size: 2em;
       padding-left: 1rem;
+      margin: 0;
+      max-width: 45vw;
     }
 
     .cta {

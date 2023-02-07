@@ -24,13 +24,19 @@
   class="card" bind:this={me}>
     <img src={img} alt="" />
     <div class="content">
-      <slot name="title"/>
-      <slot name="description" />
+      <div class="text">
+        <slot name="title"/>
+        <slot name="description" />
+      </div>
       <div class="chips">
         {#each langs as lang}
           <div class="chip">{lang}</div>
         {/each}
       </div> <!-- Replace with chips component -->
+      <div class="buttons">
+        <a class="button" href="/">Github</a>
+        <a class="button primary" href="/">Live</a>
+      </div>
     </div>
   </div>
 
@@ -55,9 +61,25 @@
   }
 
   .content {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr min-content;
+    grid-template-areas: 
+      "content content"
+      "tags buttons";
     gap: 1.5em;
+  }
+
+  .text {
+    grid-area: content;
+  }
+
+  .buttons {
+    grid-area: buttons;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 1rem;
   }
 
   .card :global(h2) {
@@ -72,12 +94,14 @@
     line-height: 1.75;
     font-weight: 600;
     opacity: 0.7;
+    margin-top: 1rem;
   }
 
   .chips {
     margin-top: auto;
     display: flex;
     gap: 1em;
+    grid-area: tags;
   }
 
   .chip {
