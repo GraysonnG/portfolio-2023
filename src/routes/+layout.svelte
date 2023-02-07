@@ -1,7 +1,6 @@
 <script lang="ts">
   import '../styles/global.css'
   import '../styles/fonts.css'
-  import '../assets/fonts/Mona-Sans.woff2'
   import Navigation from '../components/Navigation.svelte';
   import { page } from "$app/stores"
 	import { fly } from 'svelte/transition';
