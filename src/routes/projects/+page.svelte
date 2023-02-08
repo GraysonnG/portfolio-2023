@@ -17,7 +17,6 @@
   section {
     display: grid;
     gap: 12em;
-    padding-bottom: 12em;
   }
 
   @media screen and (min-width: 2000px) {

@@ -40,14 +40,15 @@
 
 <style>
   section {
+    margin-top: 6rem;
     font-style: normal;
     text-transform: uppercase;
-    text-align: center;
+    text-align: start;
   }
 
   h1 {
     display: inline-block;
-    font-size: 4em;
+    font-size: 17vw;
     font-weight: 900;
     font-stretch: 110%;
     line-height: 1;
@@ -58,13 +59,13 @@
   p {
     display: inline-block;
     width: 100%;
-    margin-top: 1em;
+    margin-top: 1rem;
     position: relative;
     left: 0.25em;
-    font-size: 1em;
+    font-size: 6vw;
     font-weight: 900;
     font-stretch: 125%;
-    max-width: 75vw;
+    max-width: 100vw;
   }
 
   .cta {
@@ -84,6 +85,7 @@
 
   @media screen and (min-width: 1200px) {
     section {
+      margin-top: 0;
       text-align: start;
     }
 

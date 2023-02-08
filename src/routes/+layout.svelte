@@ -67,13 +67,14 @@
   main {
     padding: 1em;
     padding-top: 5vh;
+    padding-bottom: 20vh;
   }
 
   div {
     position: fixed;
     top: 0;
     right: 0;
-    width: 20vw;
+    width: 0vw;
     height: 100vh;
     z-index: -2;
     isolation: isolate;

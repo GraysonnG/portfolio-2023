@@ -147,6 +147,10 @@
       flex-wrap: wrap;
     }
 
+    .buttons {
+      flex-wrap: wrap;
+    }
+
     .content {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr min-content min-content;

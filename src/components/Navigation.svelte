@@ -226,6 +226,8 @@
     color: white;
   }
 
+  
+
   @media screen and (max-width: 600px) {
     aside {
       position: fixed;
@@ -245,6 +247,12 @@
       height: 100%;
       background-color: rgb(255,255,255,0.05);
     }
+
+    aside .container::after {
+    background-color: var(--color-light);
+    transition: background-color 0ms 600ms;
+    z-index: -2;
+  }
   
 
     ul {
@@ -274,6 +282,22 @@
     a:not(.mobile) {
       display: none;
     }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .puck {
+      border-color: var(--color-dark) !important;
+    }
+
+    .split li:not(:first-child) > a {
+      color: var(--color-dark);
+    }
+
+    aside li > a {
+      color: var(--color-dark);
+    }
+
+
   }
 
   @media screen and (max-width: 350px) {
