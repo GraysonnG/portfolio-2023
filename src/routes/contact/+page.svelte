@@ -27,10 +27,10 @@
     <h2>Or Hit me up!</h2>
 
     <ul>
-      <li>graysongullion@gmail.com</li>
-      <li>Blank The Evil#6534</li>
-      <li>Grayson Gullion</li>
-      <li>GraysonnG</li>
+      <li><i class="fa-solid fa-envelope"></i> graysongullion@gmail.com</li>
+      <li><i class="fa-brands fa-discord"></i> Blank The Evil#6534</li>
+      <li><i class="fa-brands fa-linkedin"></i> Grayson Gullion</li>
+      <li><i class="fa-brands fa-github"></i> GraysonnG</li>
     </ul>
   </div>
 </section>
@@ -59,8 +59,12 @@
   }
 
   li {
+    display: flex;
     font-weight: 500;
     font-size: 1.2rem;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
   }
 
   h2 {
