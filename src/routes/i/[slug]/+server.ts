@@ -1,5 +1,6 @@
+import { SANITY_PROJECT_ID } from '$env/static/private';
 import { error } from '@sveltejs/kit';
-import { sanityDataset, sanityProjectId } from '../../../constants';
+import { sanityDataset } from '../../../constants';
 import type { RequestEvent } from './$types';
 
 export async function GET({ url }: RequestEvent) {
@@ -7,7 +8,7 @@ export async function GET({ url }: RequestEvent) {
 		const pathSplit = url.pathname.split('/');
 		const imageSplit = pathSplit[pathSplit.length - 1].split('-');
 		const image = `${imageSplit[1]}-${imageSplit[2]}.${imageSplit[3]}`;
-		const src = `https://cdn.sanity.io/images/${sanityProjectId}/${sanityDataset}/${image}`;
+		const src = `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${sanityDataset}/${image}`;
 
 		const res = await fetch(src, {
 			method: 'GET'

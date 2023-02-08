@@ -1,5 +1,6 @@
+import { SANITY_PROJECT_ID } from '$env/static/private';
 import createClient, { type SanityClient } from '@sanity/client';
-import { sanityDataset, sanityProjectId } from '../constants';
+import { sanityDataset } from '../constants';
 import type { Button } from './client';
 import type Client from './client';
 
@@ -9,7 +10,7 @@ class PortfolioSanityClient implements Client {
 	constructor() {
 		try {
 			this._client = createClient({
-				projectId: sanityProjectId,
+				projectId: SANITY_PROJECT_ID,
 				dataset: sanityDataset,
 				apiVersion: '2021-10-21',
 				useCdn: false
