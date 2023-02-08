@@ -95,7 +95,7 @@
             href="/projects"
             class={"mobile"}
             class:active={path === "/projects"}>
-            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-table-list"></i>
           </a>
         </li>
         <li>
@@ -275,8 +275,9 @@
     }
 
     a.mobile.active {
-      background-color: rgb(255,255,255,0.1);
+      background-color: var(--color-primary);
       border-radius: 0.5em;
+      color: var(--color-light) !important;
     }
 
     a:not(.mobile) {
