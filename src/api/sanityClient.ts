@@ -20,6 +20,14 @@ class PortfolioSanityClient implements Client {
 		}
 	}
 
+	getImageURL = async (id: string) => {
+		if (this._client) {
+			const rawImageData: any[] = await this._client?.fetch(`*[_id == "${id}"]`);
+
+			return rawImageData[0].url;
+		} else throw new Error('Image Not Found');
+	};
+
 	getHomeData = async () => {
 		const rawData: any[] = await this.getAllOfTypeFromClient('homedata');
 

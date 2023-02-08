@@ -3,6 +3,7 @@ export default interface Client {
 	getProjectsData: () => Promise<ProjectsData>;
 	getAboutData: () => Promise<any>;
 	getContactData: () => Promise<ContactData>;
+	getImageURL: (id: string) => Promise<string>;
 }
 
 export interface HomeData {
