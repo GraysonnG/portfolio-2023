@@ -40,5 +40,6 @@ export interface Button {
 	title: string;
 	url?: string;
 	icon: string;
+	flip?: boolean;
 	primary: boolean;
 }

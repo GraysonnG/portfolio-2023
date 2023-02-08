@@ -65,7 +65,8 @@ class PortfolioSanityClient implements Client {
 			title: sanityButton.title,
 			icon: sanityButton.icon,
 			url: sanityButton.url,
-			primary: sanityButton.primary
+			primary: sanityButton.primary,
+			flip: sanityButton.flip
 		};
 	};
 }
