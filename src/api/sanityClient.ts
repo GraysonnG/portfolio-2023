@@ -1,4 +1,5 @@
 import createClient, { type SanityClient } from '@sanity/client';
+import { sanityDataset, sanityProjectId } from '../constants';
 import type { Button } from './client';
 import type Client from './client';
 
@@ -8,8 +9,8 @@ class PortfolioSanityClient implements Client {
 	constructor() {
 		try {
 			this._client = createClient({
-				projectId: '6jnv3s0q',
-				dataset: 'production',
+				projectId: sanityProjectId,
+				dataset: sanityDataset,
 				apiVersion: '2021-10-21',
 				useCdn: false
 			});
@@ -27,9 +28,20 @@ class PortfolioSanityClient implements Client {
 			buttons: [...rawData[0].buttons.map((b: any) => this.convertButton(b))]
 		};
 	};
-	getProjectsData = async () => ({
-		projects: []
-	});
+	getProjectsData = async () => {
+		const rawData: any[] = await this.getAllOfTypeFromClient('project');
+
+		return {
+			projects: rawData.map((proj) => ({
+				img: `/i/${proj.img.asset._ref}`,
+				title: proj.title,
+				description: proj.description,
+				tags: proj.tags,
+				buttons: proj.buttons.map((b: any) => this.convertButton(b)),
+				priority: proj.priority
+			}))
+		};
+	};
 	getAboutData = async () => ({});
 	getContactData = async () => ({
 		leftTitle: '',

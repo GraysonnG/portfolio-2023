@@ -32,7 +32,8 @@ export interface Project {
 	title: string;
 	description: string;
 	tags: string[];
-	button: Button[];
+	buttons: Button[];
+	priority: number;
 }
 
 export interface Button {
