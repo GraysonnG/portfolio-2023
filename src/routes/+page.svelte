@@ -3,10 +3,15 @@
 	import { cubicInOut } from "svelte/easing";
 	import { create_in_transition } from "svelte/internal";
 	import { fly } from "svelte/transition";
+	import type { HomeData } from "../api/client";
 
   let h1: HTMLElement
   let p: HTMLElement
   let cta: HTMLElement
+
+  export let data: {
+    home: HomeData
+  }
 
 	afterNavigate(({ from }) => {
     if(from === null) {
@@ -22,12 +27,13 @@
 </svelte:head>
 
 <section class="container">
-  <h1 bind:this={h1}>Grayson Gullion</h1>
-  <p bind:this={p}>Front-End Software Engineer</p>
+  <h1 bind:this={h1}>{ data.home.mainHeading }</h1>
+  <p bind:this={p}>{ data.home.subHeading }</p>
 
   <div class="cta" bind:this={cta}>
-    <a href="/projects" class="button primary">Projects</a>
-    <a href="/contact" class="button">Reach Out</a>
+    {#each data.home.buttons as button}
+      <a href={button.url || ""} class="button" class:primary={button.primary}>{ button.title }</a>
+    {/each}
   </div>
 </section>
 
