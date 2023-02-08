@@ -4,6 +4,7 @@
  
   export let data: ProjectsData
 </script>
+
 <section class="container">
   {#each data.projects as project}
     <Card img={project.img} langs={project.tags} buttons={project.buttons}>
@@ -17,11 +18,19 @@
   section {
     display: grid;
     gap: 12em;
+    
+  }
+
+  @media screen and (min-width: 1200px) {
+    section {
+      padding-bottom: 20em;
+    }
   }
 
   @media screen and (min-width: 2000px) {
     section {
       gap: 18em;
+      
     }
   }
 </style>
