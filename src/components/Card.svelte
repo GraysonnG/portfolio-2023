@@ -5,6 +5,7 @@
 	import viewport from "../actions/useViewportAction";
 	import type { Button as ButtonType } from "../api/client";
 	import Button from "./Button.svelte";
+	import Image from "./Image.svelte";
 
   export let img: string
   export let langs: string[]
@@ -26,7 +27,8 @@
   use:viewport 
   on:enterViewport={onEnter}
   class="card" bind:this={me}>
-    <img src={img} alt="" />
+    <!-- <img src={img} alt="" /> -->
+    <Image src={img}><div class="img-placeholder" /></Image>
     <div class="content">
       <div class="text">
         <slot name="title"/>
@@ -58,11 +60,15 @@
     flex-direction: row-reverse;
   }
 
-  img {
+  .card :global(img), .img-placeholder {
     border-radius: 0.5rem;
     height: 100%;
     aspect-ratio: 1;
     object-fit: cover;
+  }
+
+  .img-placeholder {
+    background-color: var(--color-light);
   }
 
   .content {
@@ -131,7 +137,7 @@
       flex-direction: column;
     }
 
-    .card > img {
+    .card :global(img), .img-placeholder {
       height: unset;
       max-width: 100%;
       max-height: 25rem;
