@@ -4,6 +4,7 @@
 	import { create_in_transition } from "svelte/internal";
 	import { fly } from "svelte/transition";
 	import type { HomeData } from "../api/client";
+	import Button from "../components/Button.svelte";
 
   let h1: HTMLElement
   let p: HTMLElement
@@ -32,7 +33,7 @@
 
   <div class="cta" bind:this={cta}>
     {#each data.home.buttons as button}
-      <a href={button.url || ""} class="button" class:primary={button.primary}>{ button.title }</a>
+      <Button data={button} />
     {/each}
   </div>
 </section>
