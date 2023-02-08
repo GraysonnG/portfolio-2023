@@ -36,11 +36,18 @@
     </a>
   {/if}
 {:else}
-  <button class:primary={data.primary}>{data.title}</button>
+  <button 
+    class:primary={data.primary}
+    class:flip>
+    {#if icon}
+      <i class={icon}/>
+    {/if}
+    {data.title}
+  </button>
 {/if}
 
 <style>
-  a {
+  a, button {
     display: flex;
     gap: 0.5rem;
     justify-content: center;

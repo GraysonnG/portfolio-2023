@@ -1,36 +1,30 @@
-<script>
-  let name, email, message, button
+<script lang="ts">
+	import type { ContactData } from "../../api/client";
+  import Button from "../../components/Button.svelte";
 
-  
-
-
+  export let data: ContactData
 </script>
-
 
 <section class="container">
   <div class="form-wrapper">
     <h2>
-      Send a message
+      { data.leftTitle }
     </h2>
   
     <form class="form" method="POST" data-sveltekit-reload="off">
-      <input bind:this={name} name="name" type="text" placeholder="Name" />
-      <input bind:this={email} name="email" type="text" placeholder="Email" />
-      <textarea bind:this={message} name="message" placeholder="Your message..." cols=28 rows=6 />
-      <button bind:this={button} class="primary">Send</button>
+      <input name="name" type="text" placeholder="Name" />
+      <input name="email" type="text" placeholder="Email" />
+      <textarea name="message" placeholder="Your message..." cols=28 rows=6 />
+      <Button data={data.sendButton} />
     </form>
-  
-    
   </div>
 
   <div class="other-socials">
-    <h2>Or Hit me up!</h2>
-
+    <h2>{ data.rightTitle }</h2>
     <ul>
-      <li><i class="fa-solid fa-envelope"></i> graysongullion@gmail.com</li>
-      <li><i class="fa-brands fa-discord"></i> Blank The Evil#6534</li>
-      <li><i class="fa-brands fa-linkedin"></i> Grayson Gullion</li>
-      <li><i class="fa-brands fa-github"></i> GraysonnG</li>
+      {#each data.contactItems as contactItem}
+        <li><i class={contactItem.icon}/> {contactItem.text}</li>
+      {/each}
     </ul>
   </div>
 </section>
@@ -96,8 +90,9 @@
     
   }
 
-  button {
+  .form :global(button) {
     place-self: start;
+    margin-top: 2rem;
   }
 
 
@@ -105,10 +100,6 @@
     font-size: 1.2rem;
     grid-column: span 2;
     resize: vertical;
-  }
-
-  button {
-    margin-top: 2rem;
   }
 
 </style>
