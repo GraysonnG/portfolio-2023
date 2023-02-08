@@ -1,11 +1,15 @@
 <script lang="ts">
   // @ts-nocheck
-	import { create_in_transition, create_out_transition } from "svelte/internal";
+	import { create_in_transition } from "svelte/internal";
 	import { fly } from "svelte/transition";
 	import viewport from "../actions/useViewportAction";
+	import type { Button as ButtonType } from "../api/client";
+	import Button from "./Button.svelte";
 
   export let img: string
   export let langs: string[]
+  export let buttons: ButtonType[]
+
   let me: HTMLElement
   let finished = false
 
@@ -34,8 +38,9 @@
         {/each}
       </div> <!-- Replace with chips component -->
       <div class="buttons">
-        <a class="button" href="/">Github</a>
-        <a class="button primary" href="/">Live</a>
+        {#each buttons as button}
+          <Button data={button}/>
+        {/each}
       </div>
     </div>
   </div>
