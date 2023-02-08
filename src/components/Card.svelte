@@ -107,6 +107,7 @@
     display: flex;
     gap: 1em;
     grid-area: tags;
+    flex-wrap: wrap;
   }
 
   .chip {
@@ -123,7 +124,7 @@
       height: unset;
       flex-direction: column;
       width: 100%;
-      gap: 2em;
+      gap: 4em;
     }
 
     .card:nth-child(2n) {
@@ -144,6 +145,16 @@
 
     .chips {
       flex-wrap: wrap;
+    }
+
+    .content {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr min-content min-content;
+      grid-template-areas: 
+        "content"
+        "tags"
+        "buttons";
+      gap: 3em;
     }
   }
 </style>
