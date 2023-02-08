@@ -16,9 +16,9 @@
   const movePuckToCurrentElement = () => {
     const currentElement = document.querySelector(".active")
 
-    puck.style.setProperty("border-color", getComputedStyle(currentElement as HTMLElement).color)
-
     if (currentElement) {
+      puck.style.setProperty("border-color", getComputedStyle(currentElement as HTMLElement).color)
+
       const rect = currentElement.getBoundingClientRect()
       movePuckToRect(rect)
     }
