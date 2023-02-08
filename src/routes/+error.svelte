@@ -1,33 +1,53 @@
 <script>
   import { page } from "$app/stores"
+
+  console.log($page)
 </script>
 
 <section>
-  <div>
-    <h1>{$page.status}</h1>
-    <h2>Something went wrong!</h2>
+  <div class="content">
+    <div>
+      <h1>{$page.status}</h1>
+      <h2>{$page.error?.message}</h2>
+    </div>
+    <img src={"https://cataas.com/cat/gif"} alt=""/>
   </div>
 </section>
 
 <style>
-  section {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    place-items: center;
+
+  .content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
   }
 
-  div {
-    text-align: center;
+  img {
+    width: 20em;
+    height: 20em;
+    object-fit: cover;
+    border-radius: 0.3rem;
+    filter: saturate(0%);
+  }
+
+  div > * {
+    line-height: 1;
   }
 
   h1 {
-    font-size: 4em;
+    color: var(--color-dark);
+    font-size: 12em;
+    font-weight: 900;
+    font-stretch: 90%;
   }
 
   h2 {
-    opacity: 0.6;
-    font-size: 1.5em;
-    font-weight: 100;
+    color: var(--color-primary-700);
+    font-size: 4em;
+    font-weight: 900;
+    font-stretch: 125%;
   }
 </style>
