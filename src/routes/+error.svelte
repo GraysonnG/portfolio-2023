@@ -6,7 +6,12 @@
   <div class="content">
     <div>
       <h1>{$page.status}</h1>
-      <h2>{$page.error?.message}</h2>
+      {#if $page.error?.message}
+        <h2>{$page.error?.message}</h2>
+      {/if}
+      {#if $page.status === 200}
+        <h2>OK</h2>
+      {/if}
     </div>
     <img src={"https://cataas.com/cat/gif"} alt=""/>
   </div>
