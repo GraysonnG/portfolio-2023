@@ -122,7 +122,6 @@
     background-color: var(--color-primary-500-25);
     padding: 0.25rem 1rem;
     border-radius: 0.3rem;
-    backdrop-filter: blur(5px);
   }
 
   @media screen and (max-width: 1200px) {

@@ -85,7 +85,6 @@
     position: absolute;
     inset: 0;
     background-color: #0C001C;
-    backdrop-filter: blur(10px);
     opacity: 0.8;
     z-index: 2;
   }

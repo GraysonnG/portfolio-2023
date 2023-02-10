@@ -217,16 +217,14 @@
 
   aside:not(.split) .container::after {
     background-color: var(--color-light);
-    transition: background-color 0ms 600ms;
-    backdrop-filter: blur(5px);
+    transition: all 0ms 600ms;
     z-index: -2;
+    box-shadow: 0 0 2em 2em var(--color-light);
   }
 
   .split li:not(:first-child) > a {
     color: white;
   }
-
-  
 
   @media screen and (max-width: 600px) {
     aside {
@@ -249,10 +247,10 @@
     }
 
     aside .container::after {
-    background-color: var(--color-light);
-    transition: background-color 0ms 600ms;
-    z-index: -2;
-  }
+      background-color: var(--color-light);
+      transition: background-color 0ms 600ms;
+      z-index: -2;
+    }
   
 
     ul {
