@@ -1,7 +1,7 @@
 import { SANITY_PROJECT_ID } from '$env/static/private';
 import createClient, { type SanityClient } from '@sanity/client';
 import { sanityDataset } from '../constants';
-import type { Button, ContactData } from './client';
+import type { AboutData, Button, ContactData } from './client';
 import type Client from './client';
 
 class PortfolioSanityClient implements Client {
@@ -51,7 +51,14 @@ class PortfolioSanityClient implements Client {
 			}))
 		};
 	};
-	getAboutData = async () => ({});
+	getAboutData = async () => {
+		const rawData: any = (await this.getAllOfTypeFromClient('aboutdata'))[0];
+
+		return {
+			description: rawData.content,
+			headshot: `/i/${rawData.headshot.asset._ref}`
+		} as AboutData;
+	};
 	getContactData = async () => {
 		const rawData: any[] = await this.getAllOfTypeFromClient('contactdata');
 

@@ -1,7 +1,7 @@
 export default interface Client {
 	getHomeData: () => Promise<HomeData>;
 	getProjectsData: () => Promise<ProjectsData>;
-	getAboutData: () => Promise<any>;
+	getAboutData: () => Promise<AboutData>;
 	getContactData: () => Promise<ContactData>;
 	getImageURL: (id: string) => Promise<string>;
 }
@@ -14,6 +14,11 @@ export interface HomeData {
 
 export interface ProjectsData {
 	projects: Project[];
+}
+
+export interface AboutData {
+	description: string;
+	headshot: string;
 }
 
 export interface ContactData {
