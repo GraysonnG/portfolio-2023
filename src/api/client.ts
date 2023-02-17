@@ -19,6 +19,7 @@ export interface ProjectsData {
 export interface AboutData {
 	description: string;
 	headshot: string;
+	headshotbg: string;
 }
 
 export interface ContactData {

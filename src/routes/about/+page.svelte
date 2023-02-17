@@ -1,13 +1,15 @@
 <script lang="ts">
 	import type { AboutData } from "../../api/client";
 
-
   export let data: AboutData
 </script>
 
 <section class="container">
   <article>
-    <img src={data.headshot} alt="headshot of grayson"/>
+    <div class="img">
+      <img class="headshot" src={data.headshot} alt="headshot of grayson"/>
+      <img class="headshotbg" src={data.headshotbg} alt="headshot background"/>
+    </div>
     <div class="content">
       <h2>
         Hello!
@@ -20,13 +22,36 @@
 </section>
 
 <style>
-  img {
-    width: 30rem;
+  .img, img {
+    position: relative;
+    width: 120rem;
     max-width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 50%;
-    filter: saturate(0%);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+
+  .img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* background-color: var(--color-primary); */
+    z-index: 2;
+    border-radius: var(--border-radius);
+    mix-blend-mode: multiply;
+  }
+
+  .headshot {
+    position: absolute;
+    z-index: 3;
+  }
+
+  .headshotbg {
+    position: absolute;
+    z-index: -1;
+    filter: saturate(0.4) blur(5px);
+    transform: scale(1.05);
   }
 
   article {
@@ -37,6 +62,7 @@
     max-width: 30rem;
     margin-inline: auto;
     align-items: center;
+    --border-radius: 50%;
   }
 
   h2 {

@@ -56,7 +56,8 @@ class PortfolioSanityClient implements Client {
 
 		return {
 			description: rawData.content,
-			headshot: `/i/${rawData.headshot.asset._ref}`
+			headshot: `/i/${rawData.headshot.asset._ref}`,
+			headshotbg: `/i/${rawData.headshot_bg.asset._ref}`
 		} as AboutData;
 	};
 	getContactData = async () => {
