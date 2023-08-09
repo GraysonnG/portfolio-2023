@@ -36,7 +36,6 @@
     content: "";
     position: absolute;
     inset: 0;
-    /* background-color: var(--color-primary); */
     z-index: 2;
     border-radius: var(--border-radius);
     mix-blend-mode: multiply;
@@ -69,7 +68,7 @@
     color: var(--color-dark);
     font-size: 3.5rem;
     font-weight: 900;
-    font-stretch: 125%;
+    font-stretch: 100%;
   }
 
   p {

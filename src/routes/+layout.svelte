@@ -5,7 +5,7 @@
   import { page } from "$app/stores"
 	import { fly } from 'svelte/transition';
 	import Transition from '../components/Transition.svelte';
-  import img from "../assets/hero-image.avif";
+  import hero from "../assets/anime-hero.webp";
 	import { shrink } from '../animations/shrink';
 	import { cubicIn } from 'svelte/easing';
 	import Watermark from '../components/Watermark.svelte';
@@ -13,7 +13,7 @@
 	import { create_in_transition } from 'svelte/internal';
 	import isSplit from '../helpers/splithelper';
 
-  const duration = 600;
+  const duration = 800;
   $: delay = duration + 10;
 
   const getWords = (path: string): string[] => {
@@ -31,7 +31,7 @@
 
   afterNavigate(({from}) => {
     if (panel && from === null) {
-      create_in_transition(panel, shrink, { direction: "right", duration: 1200 }).start()
+      create_in_transition(panel, shrink, { direction: "right", duration: duration * 2 }).start()
     }
   })
 </script>
@@ -53,15 +53,13 @@
 
   
 </main>
-<Watermark words={getWords($page.url.pathname)} />
+<Watermark words={getWords($page.url.pathname)} duration={duration * 2} />
 
 {#if isSplit($page.route.id)}
-  <div bind:this={panel} transition:shrink={{ direction: 'right' }}>
-    <img src={img} alt="">
+  <div bind:this={panel} transition:shrink={{ direction: 'right', duration: duration }}>
+    <img src={hero} alt="">
   </div>
 {/if}
-
-
 
 <style>
   main {
@@ -78,6 +76,7 @@
     height: 100vh;
     z-index: -2;
     isolation: isolate;
+    overflow: hidden;
   }
 
   div::after {
@@ -93,6 +92,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: blur(5px);
   }
 
   @media screen and (min-width: 1200px) {

@@ -2,14 +2,15 @@
 	import { fly } from "svelte/transition";
 
   export let words: string[]
+  export let duration = 2400
 </script>
 
 {#key words}
 <div>
   {#each {length: words.length > 1 ? words.length : 2} as _,index}
     <span 
-      in:fly={{x: -100, duration: 1200, delay: 1210}}
-      out:fly={{x: 100, duration: 1200}}>
+      in:fly={{x: -100, duration, delay: duration + 10}}
+      out:fly={{x: 100, duration}}>
     { words[index % words.length] }
   </span>
   {/each}

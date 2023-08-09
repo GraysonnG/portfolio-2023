@@ -71,10 +71,7 @@
   .cta {
     position: relative;
     margin-top: 6em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
     gap: 1rem;
     font-size: 0.8em;
   }
@@ -106,6 +103,7 @@
     }
 
     .cta {
+      display: flex;
       font-size: 1em;
       flex-direction: row;
       padding-left: 1rem;

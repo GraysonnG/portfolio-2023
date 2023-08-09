@@ -217,9 +217,9 @@
 
   aside:not(.split) .container::after {
     background-color: var(--color-light);
-    transition: all 0ms 600ms;
+    transition: all 0ms 800ms;
     z-index: -2;
-    box-shadow: 0 0 2em 2em var(--color-light);
+    box-shadow: 0 0 4em 4em var(--color-light);
   }
 
   .split li:not(:first-child) > a {
