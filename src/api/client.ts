@@ -20,6 +20,14 @@ export interface AboutData {
 	description: string;
 	headshot: string;
 	headshotbg: string;
+	history: HistoryItem[];
+}
+
+export interface HistoryItem {
+	years: string;
+	title: string;
+	content: string;
+	logo: string;
 }
 
 export interface ContactData {
