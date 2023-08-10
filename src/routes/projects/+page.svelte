@@ -17,20 +17,20 @@
 <style>
   section {
     display: grid;
-    gap: 12em;
-    
+    gap: 8em;
+    padding-bottom: 10em;
   }
 
   @media screen and (min-width: 1200px) {
     section {
       padding-bottom: 20em;
+      gap: 12em;
     }
   }
 
   @media screen and (min-width: 2000px) {
     section {
       gap: 18em;
-      
     }
   }
 </style>

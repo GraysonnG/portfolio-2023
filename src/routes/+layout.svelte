@@ -69,7 +69,10 @@
   main {
     padding: 1em;
     padding-top: 5vh;
-    padding-bottom: 20vh;
+    padding-bottom: 15vh;
+    display: grid;
+    place-items: center;
+    height: 100vh;
   }
 
   div {
@@ -103,6 +106,8 @@
     main {
       padding: 1em 2em;
       padding-top: 18vh;
+      display: block;
+      height: fit-content;
     }
 
     div {

@@ -129,7 +129,9 @@
       height: unset;
       flex-direction: column;
       width: 100%;
-      gap: 4em;
+      gap: 2em;
+      font-size: 12px;
+      align-items: center;
     }
 
     .card:nth-child(2n) {
@@ -139,7 +141,8 @@
     .card :global(img), .img-placeholder {
       height: unset;
       max-width: 100%;
-      max-height: 25rem;
+      max-height: 15rem;
+      width: 15rem;
     }
 
     .card :global(p) {

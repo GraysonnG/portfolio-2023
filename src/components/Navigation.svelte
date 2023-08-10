@@ -251,6 +251,11 @@
       transition: background-color 0ms 600ms;
       z-index: -2;
     }
+
+    aside:not(.split) .container::after {
+      box-shadow: none;
+      border-top: 1px solid var(--color-white);
+    }
   
 
     ul {

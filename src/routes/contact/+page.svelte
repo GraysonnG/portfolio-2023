@@ -41,6 +41,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 8rem;
     width: 100%;
+    padding-bottom: 0rem;
   }
 
   .other-socials {
@@ -87,6 +88,7 @@
     box-shadow: 0 5px 20px var(--color-white);
     border-radius: 0.3rem;
     background-color: transparent;
+    max-width: 92vw;
   }
 
   input {
@@ -110,6 +112,7 @@
     section {
       grid-template-columns: 1fr;
       grid-template-rows: min-content min-content;
+      padding-bottom: 8rem;
     }
 
     .form-wrapper {
