@@ -63,7 +63,8 @@ class PortfolioSanityClient implements Client {
 				title: h.title,
 				content: h.content,
 				logo: `/i/${h.logo.asset._ref}`
-			}))
+			})),
+			skills: rawData.skills
 		} as AboutData;
 	};
 	getContactData = async () => {

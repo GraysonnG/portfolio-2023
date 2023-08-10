@@ -44,6 +44,17 @@
       {/each}
     </div>
   </article>
+
+  <article>
+    <div class="skills">
+      <h2>Skills</h2>
+      <div class="skills-list">
+        {#each data.skills as skill}
+          <span class="badge">{skill}</span>
+        {/each}
+      </div>
+    </div>
+  </article>
 </section>
 
 <style>
@@ -158,6 +169,27 @@
     flex-grow: 1;
   }
 
+  .skills {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--color-primary-500-25);
+    font-weight: bold;
+    color: var(--color-primary);
+  }
+
   @media screen and (min-width: 1200px) {
     section {
       gap: 16rem;
@@ -209,6 +241,15 @@
     .img, .img :global(img) {
       width: 120rem;
       max-width: 100%;
+    }
+
+    .badge {
+      padding: 0.5rem 4rem;
+      font-weight: 500;
+      font-size: 1.5rem;
+      flex-grow: 1;
+      display: grid;
+      place-items: center;
     }
   }
 </style>

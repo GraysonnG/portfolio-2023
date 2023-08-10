@@ -21,6 +21,7 @@ export interface AboutData {
 	headshot: string;
 	headshotbg: string;
 	history: HistoryItem[];
+	skills: string[];
 }
 
 export interface HistoryItem {
