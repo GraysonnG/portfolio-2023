@@ -2,6 +2,7 @@
 	import type { AboutData } from "../../api/client";
 
   import Image from "../../components/Image.svelte";
+  import SimpleCard from "../../components/SimpleCard.svelte";
 
   export let data: AboutData
 </script>
@@ -9,8 +10,8 @@
 <section class="container">
   <article>
     <div class="img">
-      <img class="headshot" src={data.headshot} alt="headshot of grayson"/>
-      <img class="headshotbg" src={data.headshotbg} alt="headshot background"/>
+      <Image clazz="headshot" src={data.headshot} alt="headshot of grayson"/>
+      <Image clazz="headshotbg" src={data.headshotbg} alt="headshot of grayson"/>
     </div>
     <div class="content">
       <h3>
@@ -28,16 +29,18 @@
       <h2>A brief history</h2>
 
       {#each data.history as job}
-        <div class="job">
-          <div class="job-logo">
-            <Image src={job.logo} alt={job.title} />
+        <SimpleCard>
+          <div class="job">
+            <div class="job-logo">
+              <Image src={job.logo} alt={job.title} />
+            </div>
+            <div class="job-content">
+              <h4>{job.years}</h4>
+              <h3>{job.title}</h3>
+              <p>{job.content}</p>
+            </div>
           </div>
-          <div class="job-content">
-            <h4>{job.years}</h4>
-            <h3>{job.title}</h3>
-            <p>{job.content}</p>
-          </div>
-        </div>
+        </SimpleCard>
       {/each}
     </div>
   </article>
@@ -51,7 +54,7 @@
     padding-bottom: 16rem;
   }
 
-  .img, img {
+  .img, .img :global(img) {
     position: relative;
     width: 120rem;
     max-width: 100%;
@@ -59,6 +62,11 @@
     object-fit: cover;
     border-radius: var(--border-radius);
     overflow: hidden;
+    isolation: isolate;
+  }
+
+  .img {
+    background-color: var(--color-light);
   }
 
   .img::after {
@@ -70,12 +78,12 @@
     mix-blend-mode: multiply;
   }
 
-  .headshot {
+  .img :global(.headshot) {
     position: absolute;
     z-index: 3;
   }
 
-  .headshotbg {
+  .img :global(.headshotbg) {
     position: absolute;
     z-index: -1;
     filter: saturate(0.4) blur(5px);

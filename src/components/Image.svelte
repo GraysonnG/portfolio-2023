@@ -5,6 +5,8 @@
 
   export let src: string
   export let alt: string | undefined
+  export let clazz: string | undefined = undefined
+
   $: loaded = false
   $: vsrc = ""
 
@@ -21,7 +23,9 @@
 {#if !loaded}
   <slot />
 {/if}
-<img use:viewport
+<img
+    class={clazz}
+    use:viewport
     on:enterViewport={loadImage}
     on:load={finished} class:loaded {alt} src={vsrc} />
 

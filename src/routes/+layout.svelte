@@ -30,6 +30,8 @@
   let panel: HTMLElement
 
   afterNavigate(({from}) => {
+    document.body.scrollTo(0, 0)
+
     if (panel && from === null) {
       create_in_transition(panel, shrink, { direction: "right", duration: duration * 2 }).start()
     }

@@ -1,4 +1,5 @@
 <script lang="ts">
+  // @ts-nocheck
 	import type { ContactData } from "../../api/client";
   import Button from "../../components/Button.svelte";
 
@@ -11,7 +12,11 @@
       { data.leftTitle }
     </h2>
   
-    <form class="form" method="POST" data-sveltekit-reload="off">
+    <form
+      netlify
+      class="form" 
+      method="POST" 
+      data-sveltekit-reload="off">
       <input name="name" type="text" placeholder="Name" />
       <input name="email" type="text" placeholder="Email" />
       <textarea name="message" placeholder="Your message..." cols=28 rows=6 />
