@@ -12,6 +12,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { create_in_transition } from 'svelte/internal';
 	import isSplit from '../helpers/splithelper';
+	import ScrollIndicator from '../components/ScrollIndicator.svelte';
 
   const duration = 800;
   $: delay = duration + 10;
@@ -56,6 +57,7 @@
   
 </main>
 <Watermark words={getWords($page.url.pathname)} duration={duration * 2} />
+<ScrollIndicator />
 
 {#if isSplit($page.route.id)}
   <div bind:this={panel} transition:shrink={{ direction: 'right', duration: duration }}>
