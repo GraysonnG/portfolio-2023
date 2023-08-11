@@ -40,13 +40,13 @@
     position: fixed;
     bottom: 4rem;
     left: 50%;
-    transform: translateX(-50%);
     font-size: 2rem;
     color: var(--color-dark);
     cursor: pointer;
     transition: transform 200ms, opacity 1200ms, color 1200ms;
     animation: bounce 2s infinite;
     opacity: 0;
+    translate: -50%;
   }
 
   .light {
