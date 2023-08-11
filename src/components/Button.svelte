@@ -54,6 +54,11 @@
     align-items: center;
   }
 
+  a::selection, button::selection {
+    background: var(--color-light-08);
+    color: var(--color-primary);
+  }
+
   i {
     position: relative;
     top: -1px;

@@ -88,6 +88,11 @@ select {
   --container-width: 1400px;
 }
 
+::selection, ::-moz-selection {
+  background-color: var(--color-primary-500-25);
+  color: var(--color-primary);
+}
+
 html {
   overflow: hidden;
 }
@@ -99,7 +104,7 @@ body {
   max-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: auto;
 }
 
 .container {
@@ -133,6 +138,12 @@ button.primary, .button.primary {
 button:hover, .button:hover {
   animation: none;
   transform: scale(1.05);
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    scrollbar-gutter: stable;
+  }
 }
 
 @keyframes pulse {
