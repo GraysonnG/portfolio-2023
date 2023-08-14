@@ -5,6 +5,10 @@
   export let data: ProjectsData
 </script>
 
+<svelte:head>
+  <title>Grayson's Portfolio | Projects</title>
+</svelte:head>
+
 <section class="container">
   {#each data.projects as project}
     <Card img={project.img} langs={project.tags} buttons={project.buttons}>

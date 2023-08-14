@@ -3,8 +3,9 @@
 	import { fly } from "svelte/transition";
 	import viewport from "../actions/useViewportAction";
 	import { create_in_transition } from "svelte/internal";
+	import { elasticOut } from "svelte/easing";
 
-  export let items: string[] = [];
+  export let items: string[];
   let finished = false
 
   const onEnter = (e: Event) => {
@@ -19,6 +20,7 @@
       const nodeRect = node.getBoundingClientRect()
       const nodeCx = nodeRect.left + nodeRect.width / 2
       const nodeCy = nodeRect.top + nodeRect.height / 2
+      const durOffset = Math.round((Math.random() * 2000) + 2500)
 
       let offsetX = parentCx - nodeCx
       let offsetY = parentCy - nodeCy
@@ -26,7 +28,13 @@
       create_in_transition(
         node, 
         fly, 
-        { x: offsetX*-2, y: offsetY*-2, duration: 2400, opacity: 0 }
+        { 
+          x: offsetX * 0.5, 
+          y: offsetY * 0.5, 
+          duration: 2400 + durOffset, 
+          opacity: 0,
+          easing: elasticOut, 
+        }
       ).start()
     });
 
@@ -38,9 +46,10 @@
   use:viewport
   on:enterViewport={onEnter}
   class:start={!finished}
+  style="--duration: {items.length}s;"
 >
   {#each items as item, i}
-    <span>{item}</span>
+    <span style="--delay: {i * 1000}ms;">{item}</span>
   {/each}
 </div>
 
@@ -58,11 +67,23 @@
   }
 
   span {
+    position: relative;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     background-color: var(--color-primary-500-25);
     font-weight: bold;
     color: var(--color-primary);
+  }
+
+  span::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    animation: blink var(--duration) infinite;
+    animation-delay: var(--delay);
+    opacity: 0;
   }
 
   @media screen and (min-width: 1200px) {
@@ -73,6 +94,20 @@
       flex-grow: 1;
       display: grid;
       place-items: center;
+    }
+  }
+
+
+  /* Animation */
+  @keyframes blink {
+    49% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.25;
+    }
+    75% {
+      opacity: 0;
     }
   }
 </style>

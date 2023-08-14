@@ -8,6 +8,10 @@
   export let data: AboutData
 </script>
 
+<svelte:head>
+  <title>Grayson's Portfolio | About</title>
+</svelte:head>
+
 <section class="container">
   <article>
     <div class="img">

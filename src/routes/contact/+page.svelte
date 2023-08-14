@@ -6,6 +6,10 @@
   export let data: ContactData
 </script>
 
+<svelte:head>
+  <title>Grayson's Portfolio | Contact</title>
+</svelte:head>
+
 <section class="container">
   <div class="form-wrapper">
     <h2>

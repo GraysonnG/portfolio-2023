@@ -90,7 +90,7 @@ select {
 
 ::selection, ::-moz-selection {
   background-color: var(--color-primary-500-25);
-  color: var(--color-primary);
+  color: var(--color-dark);
 }
 
 html {

@@ -24,7 +24,7 @@
 
 </script>
 <svelte:head>
-  <title>Home</title>
+  <title>Grayson's Portfolio | Home</title>
 </svelte:head>
 
 <section class="container">
