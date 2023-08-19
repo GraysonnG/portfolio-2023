@@ -20,7 +20,10 @@
       netlify
       class="form" 
       method="POST" 
+      data-netlify="true"
+      netlify-honeypot="bot-field"
       data-sveltekit-reload="off">
+      <input type="hidden" name="form-name" value="contact-form" />
       <input name="name" type="text" placeholder="Name" />
       <input name="email" type="text" placeholder="Email" />
       <textarea name="message" placeholder="Your message..." cols=28 rows=6 />
