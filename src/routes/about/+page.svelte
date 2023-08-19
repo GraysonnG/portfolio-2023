@@ -40,7 +40,7 @@
               <Image src={job.logo} alt={job.title} />
             </div>
             <div class="job-content">
-              <h4>{job.years}</h4>
+              <h4 class="job-years">{job.years}</h4>
               <h3>{job.title}</h3>
               <p>{job.content}</p>
             </div>
@@ -99,7 +99,6 @@
   .img :global(.headshotbg) {
     position: absolute;
     z-index: -1;
-    filter: saturate(0.4) blur(5px);
     transform: scale(1.05);
   }
 
@@ -168,6 +167,10 @@
 
   .job-content {
     flex-grow: 1;
+  }
+
+  .job-years {
+    opacity: 0.7;
   }
 
   .skills {
