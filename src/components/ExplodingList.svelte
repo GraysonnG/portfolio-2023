@@ -60,6 +60,7 @@
     gap: 1rem;
     justify-content: center;
     opacity: 1;
+    will-change: contents;
   }
 
   .start {
