@@ -4,6 +4,30 @@
   import Button from "../../components/Button.svelte";
 
   export let data: ContactData
+
+  let form: HTMLFormElement
+
+  const handleSubmit = (event: SubmitEvent) => {
+    event.preventDefault()
+    const formData = new FormData(form)
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => {
+        resetForm()
+      })
+      .catch(() => {
+        alert("error")
+      })
+  }
+
+  const resetForm = () => {
+    form.childNodes.forEach(elem => {
+      elem.value = ""
+    })
+  }
 </script>
 
 <svelte:head>
@@ -17,12 +41,11 @@
     </h2>
   
     <form
-      netlify
+      bind:this={form}
       class="form" 
       method="POST" 
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      data-sveltekit-reload="off">
+      data-sveltekit-reload="off"
+      on:submit={handleSubmit}>
       <input type="hidden" name="form-name" value="contact-form" />
       <input name="name" type="text" placeholder="Name" />
       <input name="email" type="text" placeholder="Email" />
