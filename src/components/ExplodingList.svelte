@@ -74,6 +74,7 @@
     background-color: var(--color-primary-500-25);
     font-weight: bold;
     color: var(--color-primary);
+    transform: translate(0,0);
   }
 
   span::after {

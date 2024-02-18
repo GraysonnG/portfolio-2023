@@ -45,7 +45,7 @@
       class="form" 
       method="POST" 
       data-sveltekit-reload="off"
-      on:submit={handleSubmit}>
+      >
       <input type="hidden" name="form-name" value="contact-form" />
       <input name="name" type="text" placeholder="Name" />
       <input name="email" type="text" placeholder="Email" />

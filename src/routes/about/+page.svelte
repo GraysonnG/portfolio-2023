@@ -33,10 +33,10 @@
     <div class="jobhistory">
       <h2>A brief history</h2>
 
-      {#each data.history as job}
+      {#each data.history as job, i}
         <SimpleCard>
           <div class="job">
-            <div class="job-logo">
+            <div class="job-logo" style="--shine-delay: {i * 500}ms">
               <Image src={job.logo} alt={job.title} />
             </div>
             <div class="job-content">
@@ -143,6 +143,7 @@
   }
 
   .job {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -158,11 +159,35 @@
     background-color: white;
     display: flex;
     align-items: center;
+    isolation: isolate;
+    position: relative;
   }
 
   .job-logo :global(img) {
     aspect-ratio: 1;
     object-fit: contain;
+  }
+
+  .job-logo::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: -300px;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    background: linear-gradient(
+      to right, 
+      rgba(0,0,255,0.01), 
+      rgba(0,0,255,0.25),
+      white, 
+      rgba(0,255,155,0.25),
+      rgba(0,0,255,0.01)
+    );
+    mix-blend-mode: overlay;
+    transform: skewX(-30deg);
+    animation: shine 10s ease-in-out infinite;
+    animation-delay: var(--shine-delay, 0ms);
   }
 
   .job-content {
@@ -230,6 +255,20 @@
     .img, .img :global(img) {
       width: 120rem;
       max-width: 100%;
+    }
+  }
+
+  @keyframes shine {
+    from {
+      left: -300px;
+    }
+    
+    20% {
+      left: 300px;
+    }
+    
+    to {
+      left: 300px;
     }
   }
 </style>
