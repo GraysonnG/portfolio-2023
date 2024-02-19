@@ -67,4 +67,34 @@
   .flip {
     flex-direction: row-reverse;
   }
+
+  button, .button {
+  position: relative;
+  top: 0;
+  transition: all 600ms;
+  background-color: transparent;
+  color: var(--color-dark);
+  border: 3px solid transparent;
+  border-radius: 0.5em;
+  padding: 0.75em 3.5em;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+button.primary, .button.primary {
+  border-color: transparent;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 0.5rem 1rem var(--color-primary-500-25);
+}
+
+button:hover, .button:hover {
+  transform: scale(1.05);
+}
+
+button:active, .button:active {
+  transform: translateY(0.5em);
+}
 </style>

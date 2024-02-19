@@ -42,9 +42,11 @@
   
     <form
       bind:this={form}
+      name="contact-form"
       class="form" 
       method="POST" 
       data-sveltekit-reload="off"
+      data-netlify="true"
       >
       <input type="hidden" name="form-name" value="contact-form" />
       <input name="name" type="text" placeholder="Name" />

@@ -75,6 +75,7 @@
     font-weight: bold;
     color: var(--color-primary);
     transform: translate(0,0);
+    will-change: transform, opacity, top, left;
   }
 
   span::after {
