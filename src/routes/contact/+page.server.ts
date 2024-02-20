@@ -1,11 +1,7 @@
 // @ts-nocheck
 import { client } from '../../api/sanityClient';
 
-export const actions = {
-	default: async ({ request }) => {
-		console.log(await request.formData());
-	}
-};
+export const prerender = true
 
 export async function load() {
 	const data = await client.getContactData();

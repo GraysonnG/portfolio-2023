@@ -7,22 +7,6 @@
 
   let form: HTMLFormElement
 
-  const handleSubmit = (event: SubmitEvent) => {
-    event.preventDefault()
-    const formData = new FormData(form)
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => {
-        resetForm()
-      })
-      .catch(() => {
-        alert("error")
-      })
-  }
-
   const resetForm = () => {
     form.childNodes.forEach(elem => {
       elem.value = ""
