@@ -31,6 +31,7 @@
       method="POST" 
       data-sveltekit-reload="off"
       data-netlify="true"
+      action="/success"
       >
       <input type="hidden" name="form-name" value="contact-form" />
       <input name="name" type="text" placeholder="Name" />
