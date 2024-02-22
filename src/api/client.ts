@@ -3,6 +3,7 @@ export default interface Client {
 	getProjectsData: () => Promise<ProjectsData>;
 	getAboutData: () => Promise<AboutData>;
 	getContactData: () => Promise<ContactData>;
+	getBlogData: () => Promise<BlogData[]>;
 	getImageURL: (id: string) => Promise<string>;
 }
 
@@ -58,4 +59,28 @@ export interface Button {
 	icon: string;
 	flip?: boolean;
 	primary: boolean;
+}
+
+export interface BlogData {
+	id: string;
+	slug: string;
+	content: Content[];
+	date: string;
+	title: string;
+	img: string;
+}
+
+interface Content {
+	markDefs: any[];
+	children: Child[];
+	_type: string;
+	style?: string;
+	_key: string;
+}
+
+interface Child {
+	_type: string;
+	marks: any[];
+	text: string;
+	_key: string;
 }
