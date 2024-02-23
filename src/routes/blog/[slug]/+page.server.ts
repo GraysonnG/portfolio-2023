@@ -1,14 +1,18 @@
 import { client } from "../../../api/sanityClient";
+import { parse } from "marked";
+
+export const prerender = true;
 
 export async function load({ params }) {
   const data = await client.getBlogData();
-  // get the current url slug
   const slug = params.slug;
-
   const blog = data.find(b => b.slug === slug);
 
   if (blog) {
-    return blog
+    return {
+      blog: blog,
+      html: parse(blog.markdown)
+    }
   } else {
     return {
       status: 404,

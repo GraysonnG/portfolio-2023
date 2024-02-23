@@ -6,13 +6,21 @@
 	import type { Button as ButtonType } from "../api/client";
 	import Button from "./Button.svelte";
 	import Image from "./Image.svelte";
+	import { goto } from "$app/navigation";
 
   export let img: string
   export let langs: string[]
   export let buttons: ButtonType[]
+  export let href: string = null
 
   let me: HTMLElement
   let finished = false
+
+  const onClick = () => {
+    if (href) {
+      goto(href)
+    }
+  }
 
   const onEnter = () => {
     if (!finished) {
@@ -22,30 +30,31 @@
   }
 </script>
 
-
-  <div 
+<div 
   use:viewport 
+  on:click={onClick}
+  on:keypress={{}}
   on:enterViewport={onEnter}
+  class:clickable={href !== null}
   class="card" bind:this={me}>
-    <!-- <img src={img} alt="" /> -->
-    <Image src={img}><div class="img-placeholder" /></Image>
-    <div class="content">
-      <div class="text">
-        <slot name="title"/>
-        <slot name="description" />
-      </div>
-      <div class="chips">
-        {#each langs as lang}
-          <div class="chip">{lang}</div>
-        {/each}
-      </div> <!-- Replace with chips component -->
-      <div class="buttons">
-        {#each buttons as button}
-          <Button data={button}/>
-        {/each}
-      </div>
+  <Image src={img}><div class="img-placeholder" /></Image>
+  <div class="content">
+    <div class="text">
+      <slot name="title"/>
+      <slot name="description" />
+    </div>
+    <div class="chips">
+      {#each langs as lang}
+        <div class="chip">{lang}</div>
+      {/each}
+    </div>
+    <div class="buttons">
+      {#each buttons as button}
+        <Button data={button}/>
+      {/each}
     </div>
   </div>
+</div>
 
 <style>
   .card {
@@ -54,6 +63,21 @@
     isolation: isolate;
     display: flex;
     gap: 4em;
+  }
+
+  .clickable {
+    cursor: pointer;
+    transition: all 600ms;
+    border-radius: 0.5em;
+  }
+
+  .clickable:active,
+  .clickable:hover {
+    transform: scale(1.05);
+  }
+
+  .clickable:active {
+    transform: translateY(1em);
   }
 
   .card:nth-child(2n) {

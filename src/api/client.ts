@@ -64,18 +64,10 @@ export interface Button {
 export interface BlogData {
 	id: string;
 	slug: string;
-	content: Content[];
 	date: string;
 	title: string;
 	img: string;
-}
-
-interface Content {
-	markDefs: any[];
-	children: Child[];
-	_type: string;
-	style?: string;
-	_key: string;
+	markdown: string;
 }
 
 interface Child {

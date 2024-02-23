@@ -1,17 +1,30 @@
 <script lang="ts">
   import type { BlogData } from "../../../api/client";
 	import Image from "../../../components/Image.svelte";
-	import { blogDataToHtml } from "../../../helpers/bloghelper";
+  import hljs from "highlight.js";
+  import { onMount } from "svelte";
 
-  export let data: BlogData;
+  export let data: {
+    blog: BlogData,
+    html: string,
+  };
+  
+  onMount(() => {
+    hljs.highlightAll()
+  })
 </script>
 
+<svelte:head>
+  <link rel="stylesheet" href="/highlight">
+  <title>Grayson's Portfolio | Blog | {data.blog.title}</title>
+</svelte:head>
+
 <section class="container">
-  <Image src={data.img} alt={data.title}/>
-  <h2>{data.title}</h2>
-  <div class="content">{@html
-    blogDataToHtml(data, false)    
-    }</div>
+  <Image src={data.blog.img} alt={data.blog.title}>
+    <div class="placeholder" />
+  </Image>
+  <h2>{data.blog.title}</h2>
+  <div class="content">{@html data.html}</div>
 </section>
 
 <style>
@@ -19,7 +32,7 @@
     margin-bottom: 30em;
   }
 
-  section > :global(img) {
+  section > :global(img), section .placeholder {
     width: 100%;
     height: 30em;
     object-fit: cover;
@@ -39,6 +52,9 @@
     font-size: 1.2rem;
     line-height: 1.75;
     font-weight: 600;
+  }
+
+  .content > :global(:not(pre)) {
     opacity: 0.7;
   }
 
@@ -46,32 +62,31 @@
     margin-bottom: 1rem;
   }
 
-  .content :global(.code) {
+  .content :global(code) {
     padding: 0.5em;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #232323;
-    color: white;
     border-radius: 0.5em;
+    background-color: #0d1117;
+    color: var(--color-light);
     display: block;
     width: 100%;
   }
   
-  .content :global(.code::selection) {
+  .content :global(code::selection), .content :global(code *::selection){
     background-color: var(--color-primary);
     color: white;
   }
 
-  .content :global(.em) {
+  .content :global(em) {
     font-weight: 500;
     font-stretch: 90%;
     font-variation-settings: "ital" 10;
   }
 
-  .content :global(.underline) {
+  .content :global(underline) {
     border-bottom: 3px solid var(--color-dark);
   }
 
-  .content :global(.strong) {
+  .content :global(strong) {
     font-weight: 700;
   }
 </style>

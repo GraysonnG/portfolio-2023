@@ -47,6 +47,7 @@
     animation: bounce 2s infinite;
     opacity: 0;
     translate: -50%;
+    text-shadow: 0 0 1rem var(--color-light);
   }
 
   .light {

@@ -84,10 +84,10 @@ class PortfolioSanityClient implements Client {
 				({
 					id: rawBlog._id,
 					title: rawBlog.title,
-					content: rawBlog.content,
 					date: rawBlog.date,
 					img: `/i/${rawBlog.image.asset._ref}`,
 					slug: rawBlog.slug.current,
+					markdown: rawBlog.contentmd
 				} as BlogData)
 		)
 	}
