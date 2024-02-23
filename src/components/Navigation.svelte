@@ -14,7 +14,7 @@
   }
 
   const movePuckToCurrentElement = () => {
-    const currentElement = document.querySelector(".active")
+    const currentElement = document.querySelector(".active") || document.querySelector(".home")
 
     if (currentElement) {
       puck.style.setProperty("border-color", getComputedStyle(currentElement as HTMLElement).color)
@@ -74,6 +74,7 @@
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/" 
+            class={"home"}
             class:active={path === "/"}>Home</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
