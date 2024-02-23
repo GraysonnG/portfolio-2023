@@ -2,6 +2,7 @@
   import type { BlogData } from "../../api/client";
 	import Card from "../../components/Card.svelte";
   import { parse } from "marked";
+	import Image from "../../components/Image.svelte";
   export let data: {
     blogs: BlogData[]
   }
@@ -31,8 +32,10 @@
     </div>
   {:else}
     <div class="content">
-      <h1>Nothing to see here!</h1>
-      <img src={"https://cataas.com/cat/gif"} alt=""/>
+      <h1>Nothing to see here yet!</h1>
+      <Image src={"/cat"} alt="cat gif">
+        <div class="placeholder"></div>
+      </Image>
     </div>
   {/if}
 </section>
@@ -58,11 +61,18 @@
     gap: 4rem;
   }
 
-  img {
+  .content :global(img) {
     width: min(30em, 100%);
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 0.5rem;
+    border-radius: 0.5em;
     filter: saturate(0%);
+  }
+
+  .placeholder {
+    width: min(30em, 100%);
+    aspect-ratio: 1;
+    background-color: var(--color-light);
+    border-radius: 0.5em;
   }
 </style>

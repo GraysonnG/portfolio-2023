@@ -13,7 +13,7 @@
         <h2>OK</h2>
       {/if}
     </div>
-    <img src={"https://cataas.com/cat/gif"} alt=""/>
+    <img src={"/cat"} alt=""/>
   </div>
 </section>
 
