@@ -99,7 +99,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(5px);
+    filter: blur(25px);
+    scale: 1.2;
   }
 
   @media screen and (min-width: 1200px) {
