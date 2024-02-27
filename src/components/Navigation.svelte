@@ -89,13 +89,13 @@
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/projects" 
-            class:active={path === "/projects"}>Projects</a>
+            class:active={path.includes("projects")}>Projects</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             aria-hidden="true"
             href="/projects"
             class={"mobile"}
-            class:active={path === "/projects"}>
+            class:active={path.includes("projects")}>
             <i class="fa-solid fa-table-list"></i>
           </a>
         </li>
@@ -103,13 +103,13 @@
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/about" 
-            class:active={path === "/about"}>About</a>
+            class:active={path.includes("about")}>About</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             aria-hidden="true"
             href="/about" 
             class={"mobile"}
-            class:active={path === "/about"}>
+            class:active={path.includes("about")}>
             <i class="fa-solid fa-user"></i>
           </a>
         </li>
@@ -117,13 +117,13 @@
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/blog" 
-            class:active={path === "/blog"}>Blog</a>
+            class:active={path.includes("blog")}>Blog</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             aria-hidden="true"
             href="/blog" 
             class={"mobile"}
-            class:active={path === "/blog"}>
+            class:active={path.includes("blog")}>
             <i class="fa-solid fa-square-rss"></i>
           </a>
         </li>
@@ -131,13 +131,13 @@
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/contact" 
-            class:active={path === "/contact"}>Contact</a>
+            class:active={path.includes("contact")}>Contact</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             aria-hidden="true"
             href="/contact" 
             class={"mobile"}
-            class:active={path === "/contact"}>
+            class:active={path.includes("contact")}>
             <i class="fa-solid fa-envelope"></i>
           </a>
         </li>

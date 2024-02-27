@@ -32,7 +32,10 @@
     </div>
   {:else}
     <div class="content">
-      <h1>Nothing to see here yet!</h1>
+      <div>
+        <h1>Nothing to see here yet!</h1>
+        <p class="subtitle">Except maybe a cat gif...</p>
+      </div>
       <Image src={"/cat"} alt="cat gif">
         <div class="placeholder"></div>
       </Image>
@@ -74,5 +77,13 @@
     aspect-ratio: 1;
     background-color: var(--color-light);
     border-radius: 0.5em;
+  }
+
+  .subtitle {
+    color: var(--color-primary);
+    opacity: 0.7;
+    font-size: 1.25em;
+    font-weight: 600;
+    font-stretch: 100%;
   }
 </style>
