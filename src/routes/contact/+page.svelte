@@ -2,15 +2,57 @@
   // @ts-nocheck
 	import type { ContactData } from "../../api/client";
   import Button from "../../components/Button.svelte";
+  import { object, string } from 'yup';
 
   export let data: ContactData
 
-  let form: HTMLFormElement
+  const nameSchema = string().required().min(2).max(50)
+  const emailSchema = string().required().email()
+  const messageSchema = string().required()
 
-  const resetForm = () => {
-    form.childNodes.forEach(elem => {
-      elem.value = ""
-    })
+  var name = ""
+  var email = ""
+  var message = ""
+
+  var errorName: string | null = null
+  var errorEmail: string | null = null
+  var errorMessage: string | null = null
+
+  $: sendEnabled = name != "" && 
+                  email != "" && 
+                  message != "" && 
+                  errorName == null && 
+                  errorEmail == null && 
+                  errorMessage == null
+
+  const onNameChange = async (e: Event) => {
+    try {
+      name = await nameSchema.validate(e.target.value)
+      errorName = null
+    } catch (error) {
+      errorName = error.message
+      return
+    }  
+  }
+
+  const onEmailChange = async (e: Event) => {
+    try {
+      email = await emailSchema.validate(e.target.value)
+      errorEmail = null
+    } catch (error) {
+      errorEmail = error.message
+      return
+    }
+  }
+
+  const onMessageChange = async (e: Event) => {
+    try {
+      message = await messageSchema.validate(e.target.value)
+      errorMessage = null
+    } catch (error) {
+      errorMessage = error.message
+      return
+    }
   }
 </script>
 
@@ -25,7 +67,6 @@
     </h2>
   
     <form
-      bind:this={form}
       name="contact-form"
       class="form" 
       method="POST" 
@@ -34,10 +75,25 @@
       action="/success"
       >
       <input type="hidden" name="form-name" value="contact-form" />
-      <input name="name" type="text" placeholder="Name" />
-      <input name="email" type="text" placeholder="Email" />
-      <textarea name="message" placeholder="Your message..." cols=28 rows=6 />
-      <Button data={data.sendButton} />
+      <div>
+        <input bind:value={name} on:input={onNameChange} name="name" type="text" placeholder="Name" />
+        {#if errorName}
+          <span class="error">* {errorName}</span>
+        {/if}
+      </div>
+      <div>
+        <input bind:value={email} on:input={onEmailChange} name="email" type="text" placeholder="Email" />
+        {#if errorEmail}
+          <span class="error">* {errorEmail}</span>
+        {/if}
+      </div>
+      <div class="textarea">
+        <textarea bind:value={message} on:input={onMessageChange} name="message" placeholder="Your message..." cols=28 rows=6 />
+        {#if errorMessage}
+          <span class="error">* {errorMessage}</span>
+        {/if}
+      </div>
+      <Button data={data.sendButton} disabled={!sendEnabled} />
     </form>
   </div>
 
@@ -101,16 +157,20 @@
 
   input, textarea {
     padding: 1em;
-    border: 3px solid var(--color-dark);
-    box-shadow: 0 5px 20px var(--color-white);
-    border-radius: 0.3rem;
-    background-color: transparent;
+    border: none;
+    background-color: rgb(200,200,200);
     max-width: 92vw;
   }
 
   input {
     font-size: 1.2em;
-    
+    border-radius: 3em;
+    padding-inline: 1.5em;
+  }
+
+  textarea {
+    width: 100%;
+    border-radius: 1em;
   }
 
   .form :global(button) {
@@ -119,10 +179,17 @@
   }
 
 
-  .form textarea {
+  .form textarea, .form .textarea {
     font-size: 1.2rem;
     grid-column: span 2;
     resize: vertical;
+  }
+
+  .error {
+    margin-left: 2em;
+    display:block;
+    color: red;
+    font-size: 0.8em;
   }
 
   @media screen and (max-width: 1200px) {
