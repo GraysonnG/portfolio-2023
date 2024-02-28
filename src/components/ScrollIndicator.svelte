@@ -49,6 +49,11 @@
     translate: -50%;
   }
 
+  div i {
+    
+    text-shadow: 0 0 1rem var(--color-light);
+  }
+
   .light {
     color: var(--color-light);
   }
@@ -60,6 +65,12 @@
   @media screen and (min-width: 1200px) {
     div {
       bottom: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    div {
+      color: var(--color-dark) !important;
     }
   }
 

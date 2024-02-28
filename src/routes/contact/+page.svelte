@@ -2,7 +2,7 @@
   // @ts-nocheck
 	import type { ContactData } from "../../api/client";
   import Button from "../../components/Button.svelte";
-  import { object, string } from 'yup';
+  import { string } from 'yup';
 
   export let data: ContactData
 
@@ -75,13 +75,13 @@
       action="/success"
       >
       <input type="hidden" name="form-name" value="contact-form" />
-      <div>
+      <div class="name">
         <input bind:value={name} on:input={onNameChange} name="name" type="text" placeholder="Name" />
         {#if errorName}
           <span class="error">* {errorName}</span>
         {/if}
       </div>
-      <div>
+      <div class="email">
         <input bind:value={email} on:input={onEmailChange} name="email" type="text" placeholder="Email" />
         {#if errorEmail}
           <span class="error">* {errorEmail}</span>
@@ -156,6 +156,7 @@
   }
 
   input, textarea {
+    width: 100%;
     padding: 1em;
     border: none;
     background-color: rgb(200,200,200);
@@ -169,7 +170,6 @@
   }
 
   textarea {
-    width: 100%;
     border-radius: 1em;
   }
 
@@ -224,11 +224,11 @@
     }
 
     input, textarea {
-      background-color: var(--color-light);
+      background-color: rgb(200, 200, 200);
       box-shadow: none;
     }
 
-    .form textarea {
+    .form textarea, .form .textarea {
       grid-column: span 1;
     }
   }
