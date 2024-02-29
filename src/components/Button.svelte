@@ -2,6 +2,7 @@
 	import type { Button } from "../api/client";
 
   export let data: Button
+  export let disabled = false
 
   let external = data.url?.startsWith("http")
   let icon = data.icon !== "none" ? data.icon : undefined
@@ -14,6 +15,7 @@
     <a 
       href={data.url}
       class="button"
+      class:disabled
       target="_blank"
       rel="noreferrer noopener"
       class:flip
@@ -26,7 +28,8 @@
   {:else}
     <a 
       href={data.url}
-      class="button" 
+      class="button"
+      class:disabled
       class:flip
       class:primary={data.primary}>
       {#if icon}
@@ -37,7 +40,9 @@
   {/if}
 {:else}
   <button 
+    {disabled}
     class:primary={data.primary}
+    class:disabled
     class:flip>
     {#if icon}
       <i class={icon}/>
@@ -97,5 +102,11 @@
 
   button:active, .button:active {
     transform: translateY(0.5em);
+  }
+
+  .disabled {
+    pointer-events: none;
+    background-color: rgb(100,100,100) !important;
+    box-shadow: none !important;
   }
 </style>
