@@ -234,7 +234,6 @@
     background-color: var(--color-light);
     transition: all 0ms 800ms;
     z-index: -2;
-    box-shadow: 0 0 4em 4em var(--color-light);
   }
 
   .split li:not(:first-child) > a {

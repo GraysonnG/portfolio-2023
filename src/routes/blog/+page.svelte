@@ -16,18 +16,21 @@
   {#if data.blogs.length > 0}
     <div class="blogs">
       {#each data.blogs as blog}
-        <Card 
-          href={`/blog/${blog.slug}`}
-          img={blog.img} 
-          langs={[]} 
-          buttons={[]}>
-          <h2 slot="title">{blog.title}</h2>
-          <p slot="description">
-            {@html 
-              parse(blog.markdown).toString().slice(0, 350).concat("...")
-            }
-          </p>
-        </Card>
+        <a class="blog" href="/blog/{blog.slug}">
+          <div class="img">
+            <Image src={blog.img} alt={blog.title}>
+              <div class="placeholder"></div>
+            </Image>
+          </div>
+          <div class="card-content">
+            <h2>{blog.title}</h2>
+            <p>
+              {@html 
+                parse(blog.markdown).toString().slice(0, 350).concat("...")
+              }
+            </p>
+          </div>
+        </a>
       {/each}
     </div>
   {:else}
@@ -72,10 +75,67 @@
     filter: saturate(0%);
   }
 
+  .blog {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    text-decoration: none;
+    color: var(--color-dark);
+  }
+
+  .blog::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 1em;
+    border: 3px solid transparent;
+    transition: all 300ms ease-in-out;
+  }
+
+  .blog:hover::after {
+    inset: -0.5rem;
+    border: 3px solid var(--color-dark);
+  }
+
+  .blog .card-content {
+    margin-inline-start: 1em;
+    width: 100%;
+  }
+
+  .blog h2 {
+    font-size: 2.5em;
+    font-weight: 900;
+    font-stretch: 115%;
+    text-transform: capitalize;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .blog p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-stretch: 100%;
+    line-height: 1.75;
+    opacity: 0.7;
+  }
+
   .placeholder {
-    width: min(30em, 100%);
+    width: min(20em, 100%);
     aspect-ratio: 1;
     background-color: var(--color-light);
+    border-radius: 0.5em;
+  }
+
+  .img {
+    width: 20em;
+    aspect-ratio: 1;
+  }
+
+  .img :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 0.5em;
   }
 
@@ -85,5 +145,32 @@
     font-size: 1.25em;
     font-weight: 600;
     font-stretch: 100%;
+  }
+
+  .blogs {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .blogs {
+      gap: 8rem;
+    }
+
+    .blog {
+      flex-direction: column;
+      gap: 1em;
+      align-items: center;
+    }
+
+    .blog .card-content {
+      margin-inline-start: 0;
+    }
+
+    .img {
+      width: 15rem;
+      margin-bottom: 2em;
+    }
   }
 </style>
