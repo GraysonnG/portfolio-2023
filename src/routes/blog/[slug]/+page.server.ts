@@ -1,8 +1,6 @@
 import { client } from "../../../api/sanityClient";
 import { parse } from "marked";
 
-export const prerender = true;
-
 export async function load({ params }) {
   const data = await client.getBlogData();
   const slug = params.slug;
