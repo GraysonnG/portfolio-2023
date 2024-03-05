@@ -1,7 +1,7 @@
 import { SANITY_PROJECT_ID } from '$env/static/private';
 import createClient, { type SanityClient } from '@sanity/client';
 import { sanityDataset } from '../constants';
-import type { AboutData, Button, ContactData } from './client';
+import type { AboutData, BlogData, Button, ContactData } from './client';
 import type Client from './client';
 
 class PortfolioSanityClient implements Client {
@@ -77,6 +77,20 @@ class PortfolioSanityClient implements Client {
 			contactItems: rawData[0].contactItems
 		} as ContactData;
 	};
+	getBlogData = async () => {
+		const rawData: any[] = await this.getAllOfTypeFromClient('blogdata');
+
+		return rawData.map( rawBlog =>
+				({
+					id: rawBlog._id,
+					title: rawBlog.title,
+					date: rawBlog.date,
+					img: `/i/${rawBlog.image.asset._ref}`,
+					slug: rawBlog.slug.current,
+					markdown: rawBlog.contentmd
+				} as BlogData)
+		)
+	}
 
 	private getAllOfTypeFromClient = async (type: string) => {
 		const data = await this._client?.fetch(`*[_type=="${type}"]`);

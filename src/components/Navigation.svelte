@@ -14,7 +14,7 @@
   }
 
   const movePuckToCurrentElement = () => {
-    const currentElement = document.querySelector(".active")
+    const currentElement = document.querySelector(".active") || document.querySelector(".home")
 
     if (currentElement) {
       puck.style.setProperty("border-color", getComputedStyle(currentElement as HTMLElement).color)
@@ -74,6 +74,7 @@
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/" 
+            class={"home"}
             class:active={path === "/"}>Home</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
@@ -88,13 +89,13 @@
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/projects" 
-            class:active={path === "/projects"}>Projects</a>
+            class:active={path.includes("projects")}>Projects</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             aria-hidden="true"
             href="/projects"
             class={"mobile"}
-            class:active={path === "/projects"}>
+            class:active={path.includes("projects")}>
             <i class="fa-solid fa-table-list"></i>
           </a>
         </li>
@@ -102,27 +103,41 @@
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/about" 
-            class:active={path === "/about"}>About</a>
+            class:active={path.includes("about")}>About</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             aria-hidden="true"
             href="/about" 
             class={"mobile"}
-            class:active={path === "/about"}>
+            class:active={path.includes("about")}>
             <i class="fa-solid fa-user"></i>
           </a>
         </li>
         <li>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
+            href="/blog" 
+            class:active={path.includes("blog")}>Blog</a>
+          <a 
+            on:mouseover={handleMouseOver} on:focus={() => {}}
+            aria-hidden="true"
+            href="/blog" 
+            class={"mobile"}
+            class:active={path.includes("blog")}>
+            <i class="fa-solid fa-square-rss"></i>
+          </a>
+        </li>
+        <li>
+          <a 
+            on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/contact" 
-            class:active={path === "/contact"}>Contact</a>
+            class:active={path.includes("contact")}>Contact</a>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
             aria-hidden="true"
             href="/contact" 
             class={"mobile"}
-            class:active={path === "/contact"}>
+            class:active={path.includes("contact")}>
             <i class="fa-solid fa-envelope"></i>
           </a>
         </li>
@@ -219,7 +234,6 @@
     background-color: var(--color-light);
     transition: all 0ms 800ms;
     z-index: -2;
-    box-shadow: 0 0 4em 4em var(--color-light);
   }
 
   .split li:not(:first-child) > a {

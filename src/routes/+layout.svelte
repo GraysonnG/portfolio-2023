@@ -21,6 +21,7 @@
     const home = ["front", "end"]
 
     switch(path) {
+      case "":
       case "/":
         return home
       default: 
@@ -56,7 +57,7 @@
 
   
 </main>
-<Watermark words={getWords($page.url.pathname)} duration={duration * 2} />
+<Watermark words={getWords($page.url.pathname.split("/")[1])} duration={duration * 2} />
 <ScrollIndicator />
 
 {#if isSplit($page.route.id)}

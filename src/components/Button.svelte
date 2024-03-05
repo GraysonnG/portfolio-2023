@@ -3,6 +3,7 @@
 
   export let data: Button
   export let disabled = false
+  export let onClick = () => {}
 
   let external = data.url?.startsWith("http")
   let icon = data.icon !== "none" ? data.icon : undefined
@@ -41,6 +42,7 @@
 {:else}
   <button 
     {disabled}
+    on:click={onClick}
     class:primary={data.primary}
     class:disabled
     class:flip>
