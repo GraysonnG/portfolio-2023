@@ -4,5 +4,10 @@ const HIGHLIGHT_SOURCE = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11
 
 export async function GET({ url }: RequestEvent) {
   const res = await fetch(HIGHLIGHT_SOURCE);
-  return new Response(res.body)
+  return new Response(res.body, {
+    status: 200,
+    headers: new Headers({
+      "content-type": "text/css"
+    })
+  })
 }
