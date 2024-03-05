@@ -24,9 +24,9 @@
 
 <section class="container">
   <div class="breadcrumb">
-    <a href="/blog"><i class="fa-solid fa-arrow-left"></i> Blogs </a>
+    <a href="/blog"><i class="fa-solid fa-arrow-left"></i></a>
     <span class="date">Posted {date.toLocaleDateString()}</span>
-    <span class="share">Share <i class="fa-solid fa-copy"></i></span>
+    <span class="share"><i class="fa-solid fa-copy"></i></span>
   </div>
   <div class="hero">
     <Image src={data.blog.img} alt={data.blog.title}>
@@ -186,5 +186,43 @@
     cursor: pointer;
     border-bottom: 3px solid transparent;
     transition: border-bottom 300ms ease-in-out;
+  }
+
+  @media screen and (max-width: 1200px) {
+    section {
+      margin-bottom: 10em;
+    }
+    .content {
+      display: block;
+      padding-inline: 0;
+      width: 100%;
+    }
+  
+    .content :global(pre) {
+      max-width: calc(100vw - 2em);
+      overflow-x: auto;
+    }
+
+    .hero {
+      margin-top: 4em;
+      margin-bottom: 4em;
+      width: 100%;
+      height: 15em;
+    }
+
+    .hero :global(img), .hero :global(.placeholder) {
+      width: 100%;
+      height: 15em;
+      aspect-ratio: unset;
+    }
+
+    h2 {
+      border-radius: 0;
+      font-size: 2rem;
+      width: 100%;
+      padding: 0.5em;
+      top: 100%;
+      transform: translate(-50%, -100%);
+    }
   }
 </style>
