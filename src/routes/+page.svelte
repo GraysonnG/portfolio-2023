@@ -5,6 +5,7 @@
 	import { fly } from "svelte/transition";
 	import type { HomeData } from "../api/client";
 	import Button from "../components/Button.svelte";
+	import MetaTags from "../components/meta/MetaTags.svelte";
 
   let h1: HTMLElement
   let p: HTMLElement
@@ -25,6 +26,10 @@
 </script>
 <svelte:head>
   <title>Grayson's Portfolio | Home</title>
+  <MetaTags 
+    title="Grayson Gullion | Portfolio"
+    description="Grayson Gullion's portfolio website. A place to showcase my work and projects."
+    />
 </svelte:head>
 
 <section class="container">

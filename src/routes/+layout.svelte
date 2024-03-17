@@ -41,8 +41,8 @@
 </script>
 
 <Navigation />
-<main>
-  
+
+<main>  
   <Transition 
     intr={{
       transition: fly,
@@ -54,10 +54,10 @@
     }}>
     <slot />
   </Transition>
-
-  
 </main>
+
 <Watermark words={getWords($page.url.pathname.split("/")[1])} duration={duration * 2} />
+
 <ScrollIndicator />
 
 {#if isSplit($page.route.id)}

@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { BlogData } from "../../api/client";
-	import Card from "../../components/Card.svelte";
   import { parse } from "marked";
 	import Image from "../../components/Image.svelte";
+	import MetaTitle from "../../components/meta/MetaTitle.svelte";
   export let data: {
     blogs: BlogData[]
   }

@@ -1,9 +1,10 @@
 <script lang="ts">
   import type { BlogData } from "../../../api/client";
-	import Button from "../../../components/Button.svelte";
 	import Image from "../../../components/Image.svelte";
   import hljs from "highlight.js";
   import { onMount } from "svelte";
+	import SharingButtons from "../../../components/SharingButtons.svelte";
+  import { page } from "$app/stores";
 
   export let data: {
     blog: BlogData,
@@ -23,19 +24,22 @@
 </svelte:head>
 
 <section class="container">
-  <div class="breadcrumb">
-    <a href="/blog"><i class="fa-solid fa-arrow-left"></i></a>
-    <span class="date">Posted {date.toLocaleDateString()}</span>
-    <span class="share"><i class="fa-solid fa-copy"></i></span>
-  </div>
   <div class="hero">
     <Image src={data.blog.img} alt={data.blog.title}>
       <div class="placeholder" />
     </Image>
 
     <h2>{data.blog.title}</h2>
+
+    <span class="date">Posted {date.toLocaleDateString()}</span>
+
+    <div class="sharing">
+      <SharingButtons url={`${$page.url.href}`} text={encodeURI(`Grayson's Portfolio | Blog | ${data.blog.title}`)} />
+    </div>
   </div>
+
   
+
   <div class="content">{@html data.html}</div>
 </section>
 
@@ -45,6 +49,16 @@
     position: relative;
   }
 
+  .sharing {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    z-index: 1;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+  }
+
   .hero {
     position: relative;
     width: 100%;
@@ -52,7 +66,7 @@
     object-fit: cover;
     border-radius: 1em;
     overflow: hidden;
-    margin-bottom: 8em;
+    margin-bottom: 2em;
   }
 
   .hero :global(img), .hero :global(.placeholder) {
@@ -162,30 +176,16 @@
     margin-inline-start: 0.5em;
   }
 
-  .breadcrumb {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1em;
-  }
-
-  .breadcrumb a {
-    text-decoration: none;
-    color: var(--color-dark);
-    border-bottom: 3px solid transparent;
-    transition: border-bottom 300ms ease-in-out;
-  }
-
-  .breadcrumb a:hover, .share:hover {
-    border-bottom: 3px solid var(--color-dark);
-  }
-
-  .share {
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: border-bottom 300ms ease-in-out;
+  .date {
+    font-size: 0.8em;
+    font-weight: 700;
+    position: absolute;
+    left: 1em;
+    bottom: 1em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    color: var(--color-white);
+    background-color: rgba(0,0,0,0.7);
   }
 
   @media screen and (max-width: 1200px) {
