@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /i/
+Disallow: /cat/
+Disallow: /fa/
+Disallow: /highlight/
+
+Sitemap: https://blanktheevil.com/sitemap.xml
