@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { BlogData } from "../../api/client";
-  import { parse } from "marked";
 	import Image from "../../components/Image.svelte";
-	import MetaTitle from "../../components/meta/MetaTitle.svelte";
+	import markdownToTxt from "../../helpers/mdtotxt";
   export let data: {
     blogs: BlogData[]
   }
+
 </script>
 
 <svelte:head>
@@ -25,9 +25,7 @@
           <div class="card-content">
             <h2>{blog.title}</h2>
             <p>
-              {@html 
-                parse(blog.markdown).toString().slice(0, 350).concat("...")
-              }
+              {markdownToTxt(blog.markdown).slice(0, 350).concat("...")}
             </p>
           </div>
         </a>
