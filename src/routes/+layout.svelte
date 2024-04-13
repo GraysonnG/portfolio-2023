@@ -15,6 +15,7 @@
 	import ScrollIndicator from '../components/ScrollIndicator.svelte';
 
   const duration = 800;
+  const x = 200;
   $: delay = duration + 10;
 
   const getWords = (path: string): string[] => {
@@ -25,7 +26,7 @@
       case "/":
         return home
       default: 
-        return [path.replace("/", "")] || home
+        return [...(path.split("/").filter(p => p != ""))] || home
     }
   }
 
@@ -42,21 +43,21 @@
 
 <Navigation />
 
-<main>  
+<main>
   <Transition 
     intr={{
       transition: fly,
-      options: { x: -200, duration, delay }
+      options: { x: -x, duration, delay }
     }}
     outtr={{
       transition: fly,
-      options: { x: 200, duration, easing: cubicIn }
+      options: { x: x, duration, easing: cubicIn }
     }}>
     <slot />
   </Transition>
 </main>
 
-<Watermark words={getWords($page.url.pathname.split("/")[1])} duration={duration * 2} />
+<Watermark words={getWords($page.url.pathname)} duration={duration * 2} />
 
 <ScrollIndicator />
 

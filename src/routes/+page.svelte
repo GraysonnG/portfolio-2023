@@ -17,9 +17,9 @@
 
 	afterNavigate(({ from }) => {
     if(from === null) {
-      create_in_transition(h1, fly, { x: -1000, duration: 2000, easing: cubicInOut }).start()
-      create_in_transition(p, fly, { x: -1000, duration: 2000, delay: 600, easing: cubicInOut }).start()
-      create_in_transition(cta, fly, { y: 1000, duration: 2600, easing: cubicInOut }).start()
+      create_in_transition(h1, fly, { x: -1000, duration: 2500, easing: cubicInOut }).start()
+      create_in_transition(p, fly, { x: -1000, duration: 2500, delay: 600, easing: cubicInOut }).start()
+      create_in_transition(cta, fly, { y: 1000, duration: 3100, easing: cubicInOut }).start()
     }
   })
 
@@ -45,6 +45,7 @@
 
 <style>
   section {
+    position: relative;
     margin-top: 6rem;
     font-style: normal;
     text-transform: uppercase;
@@ -52,13 +53,18 @@
   }
 
   h1 {
+    position: relative;
     display: inline-block;
     font-size: 17vw;
     font-weight: 900;
     font-stretch: 110%;
     line-height: 1;
-    color: var(--color-primary);
+    color: transparent;
+    background: linear-gradient(-90deg, var(--color-primary), var(--color-primary-700));
+    -webkit-background-clip: text;
+    background-clip: text;
     width: 100%;
+    overflow: hidden;
   }
 
   p {
@@ -79,6 +85,10 @@
     display: grid;
     gap: 1rem;
     font-size: 0.8em;
+  }
+
+  h1, p, .cta {
+    will-change: transform;
   }
 
   .cta :global(.primary) {

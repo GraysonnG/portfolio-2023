@@ -6,9 +6,10 @@
 
   export let data: ContactData
 
+  const messageMaxLength = 350
   const nameSchema = string().required().min(2).max(50)
   const emailSchema = string().required().email()
-  const messageSchema = string().required()
+  const messageSchema = string().max(messageMaxLength).required()
 
   var name = ""
   var email = ""
@@ -61,8 +62,7 @@
 </svelte:head>
 
 <section class="container">
-  <div class="form-wrapper">
-    <h2>
+    <h2 class="form-title">
       { data.leftTitle }
     </h2>
   
@@ -88,23 +88,25 @@
         {/if}
       </div>
       <div class="textarea">
-        <textarea bind:value={message} on:input={onMessageChange} name="message" placeholder="Your message..." cols=28 rows=6 />
+        <div class="wrapper">
+          <textarea bind:value={message} on:input={onMessageChange} name="message" placeholder="Your message..." cols=28 rows=6 maxlength="{messageMaxLength}" />
+          <span class="character-limit">{message.length} / {messageMaxLength}</span>
+        </div>
         {#if errorMessage}
           <span class="error">* {errorMessage}</span>
         {/if}
       </div>
       <Button data={data.sendButton} disabled={!sendEnabled} />
     </form>
-  </div>
 
-  <div class="other-socials">
-    <h2>{ data.rightTitle }</h2>
-    <ul>
-      {#each data.contactItems as contactItem}
-        <li><i class={contactItem.icon}/> {contactItem.text}</li>
-      {/each}
-    </ul>
-  </div>
+    <h2 class="socials-title">{data.rightTitle}</h2>
+    <div class="socials">
+      <ul>
+        {#each data.contactItems as contactItem}
+          <li><i class={contactItem.icon}/> {contactItem.text}</li>
+        {/each}
+      </ul>
+    </div>
 </section>
 
 
@@ -112,7 +114,14 @@
   section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8rem;
+    grid-template-rows: auto auto;
+
+    grid-template-areas: 
+      "title-form title-socials"
+      "form socials";
+
+    column-gap: 8rem;
+    row-gap: 0;
     width: 100%;
     padding-bottom: 0rem;
   }
@@ -122,12 +131,28 @@
     text-align: end;
   }
 
-  .other-socials ul {
+
+  .socials-title {
+    color: var(--color-light);
+    grid-area: title-socials;
+    text-align: end;
+  }
+
+  .socials {
+    color: var(--color-light);
+    grid-area: socials;
+  }
+  
+  .socials ul {
     list-style: none;
     padding: 0;
     margin-top: 2rem;
     display: grid;
     gap: 2rem;
+  }
+
+  .textarea .wrapper {
+    position: relative;
   }
 
   li {
@@ -147,10 +172,15 @@
     line-height: 1.1;
   }
 
+  .form-title {
+    grid-area: title-form;
+  }
+
   .form, form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: min-content min-content;
+    grid-area: form;
     gap: 1rem;
     margin-top: 2rem;
   }
@@ -171,6 +201,14 @@
 
   textarea {
     border-radius: 1em;
+  }
+
+  .character-limit {
+    position: absolute;
+    bottom: 0.5em;
+    right: 1em;
+    font-size: 0.8em;
+    opacity: 0.5;
   }
 
   .form :global(button) {
@@ -195,7 +233,11 @@
   @media screen and (max-width: 1200px) {
     section {
       grid-template-columns: 1fr;
-      grid-template-rows: min-content min-content;
+      grid-template-areas: 
+      "title-form"
+      "form"
+      "title-socials"
+      "socials";
       padding-bottom: 8rem;
     }
 
@@ -208,7 +250,13 @@
       text-align: start;
     }
 
-    .other-socials li {
+    .socials-title {
+      margin-top: 2em;
+      color: var(--color-dark);
+      text-align: start;
+    }
+    .socials li {
+      color: var(--color-dark);
       justify-content: start;
     }
   }
