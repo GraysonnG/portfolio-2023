@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
 	import { onMount } from "svelte";
-	import isSplit from "../helpers/splithelper";
   $: path = $page.url.pathname;
 
   let puck: HTMLElement;
@@ -18,7 +17,6 @@
 
     if (currentElement) {
       puck.style.setProperty("border-color", getComputedStyle(currentElement as HTMLElement).color)
-
       const rect = currentElement.getBoundingClientRect()
       movePuckToRect(rect)
     }
@@ -59,14 +57,11 @@
       unsub()
     }
   })
-
-  $: split = isSplit($page.route.id)
-
 </script>
 
 <svelte:window on:resize={movePuckToCurrentElement}/>
 
-<aside class:split>
+<aside>
   <div class="container">
     <nav on:mouseleave={handleMouseOut} on:blur={() => {}}>
       <ul>
@@ -147,18 +142,17 @@
   <div bind:this={puck} class="puck"></div>
 </aside>
 
-
-
 <style>
   aside {
     position: sticky;
-    width: 100%;
+    width: min(calc(100vw - 8em), 100rem);
     top: 0;
     display: flex;
     justify-content: center;
     z-index: 10000;
     isolation: isolate;
     padding-top: 1em;
+    margin: 0 auto;
   }
 
   .container {
@@ -173,12 +167,13 @@
     top: 0;
     left: 50%;
     height: 100%;
-    width: 100vw;
+    width: calc(100% + 6em);
     transform: translateX(-50%);
     background-color: transparent;
     transition: background-color 0ms 0ms;
     pointer-events: none;
     user-select: none;
+    border-radius: 100em;
   }
 
   nav {
@@ -190,18 +185,21 @@
     position: fixed;
     width: 0;
     height: 0;
-    border-bottom: 3px solid var(--color-dark);
+    border-radius: 3em;
+    background-color: var(--color-primary);
     left: 0;
     top: 0;
-    z-index: -1;
-    transition: left 600ms, width 600ms, border 600ms;
+    z-index: 2;
+    transition: left 300ms, width 300ms, border 300ms;
+    pointer-events: none;
+    opacity: 0.3;
   }
 
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    padding-block: 2em;
+    padding-block: 1.5em;
     display: flex;
     gap: 3em;
   }
@@ -218,7 +216,7 @@
   li > a {
     font-weight: 600;
     font-stretch: 100%;
-    transition: color 600ms ease-in-out;
+    transition: color 300ms ease-in-out;
     color: var(--color-dark);
   }
 
@@ -230,14 +228,26 @@
     border-color: var(--color-dark) !important;
   }
 
-  aside:not(.split) .container::after {
-    background-color: var(--color-light);
-    transition: all 0ms 800ms;
+  aside .container::after {
+    background-color: transparent;
+    opacity: 1;
+    backdrop-filter: blur(1em) !important;
+    box-shadow: 0 1em 10em rgba(0 0 0 / 0.3);
     z-index: -2;
   }
 
-  .split li:not(:first-child) > a {
-    color: white;
+  aside .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: calc(100% + 6em);
+    z-index: -1;
+    border-radius: 100em;
+    background-color: var(--color-light);
+    opacity: 0.8;
   }
 
   @media screen and (max-width: 600px) {
@@ -262,7 +272,7 @@
 
     aside .container::after {
       background-color: var(--color-light);
-      transition: background-color 0ms 600ms;
+      transition: background-color 0ms 300ms;
       z-index: -2;
     }
 
@@ -307,15 +317,9 @@
       border-color: var(--color-dark) !important;
     }
 
-    .split li:not(:first-child) > a {
-      color: var(--color-dark);
-    }
-
     aside li > a {
       color: var(--color-dark);
     }
-
-
   }
 
   @media screen and (max-width: 350px) {
