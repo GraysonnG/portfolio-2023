@@ -75,6 +75,7 @@ select {
 
 :root {
   --color-black: rgba(0, 0, 0, 1);
+  --color-primary-300: rgb(140, 52, 255);
   --color-primary: rgba(112, 0, 255, 1);
   --color-primary-700: rgba(57, 0, 129, 1);
   --color-primary-500-25: rgba(112, 0, 255, 0.25);
@@ -84,13 +85,33 @@ select {
   --color-light-08: rgba(217, 217, 217, 0.8);
   --color-white: rgba(255, 255, 255, 1);
   --color-white-02: rgba(255, 255, 255, 0.2);
+  --color-gray-500: rgb(100,100,100);
+  --color-gray-300: rgb(200, 200, 200);
+  --color-gray-800: rgb(25, 25, 25);
+
+  --color-surface: var(--color-light);
+  --color-on-surface: var(--color-dark);
+  --color-on-surface-alt: var(--color-white);
+  --color-surface-variant: var(--color-primary);
+  --color-on-surface-variant: var(--color-white);
+  --color-container: var(--color-gray-300);
+  --color-on-container: var(--color-dark);
+  --color-button: var(--color-primary);
+  --color-on-button: var(--color-white);
+  --color-button-variant: transparent;
+  --color-on-button-variant: var(--color-on-surface);
+  --color-chip: var(--color-primary-500-25);
+  --color-on-chip: var(--color-primary-700);
+  --color-chip-variant: var(--color-primary-500-25);
+  --color-on-chip-variant: var(--color-primary);
 
   --container-width: 1400px;
 }
 
 ::selection, ::-moz-selection {
-  background-color: var(--color-primary-500-25);
-  color: var(--color-dark);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  opacity: 1;
 }
 
 html {
@@ -99,8 +120,8 @@ html {
 
 body {
   font-family: 'Mona Sans', 'Roboto', sans-serif;
-  background-color: var(--color-light);
-  color: var(--color-dark);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
   max-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -112,10 +133,21 @@ body {
   max-width: var(--container-width);
 }
 
-
-
 @media screen and (min-width: 1200px) {
   body {
     scrollbar-gutter: stable;
   }
+}
+
+body.dark {
+  /* Dark Mode */
+    --color-surface: #222;
+    --color-container: var(--color-gray-800);
+    --color-on-container: var(--color-light);
+    --color-on-surface: #eee;
+    --color-on-surface-alt: #333;
+    --color-chip: var(--color-primary-700);
+    --color-on-chip: var(--color-light);
+    --color-button-variant: transparent;
+    --color-on-button-variant: var(--color-on-surface);
 }

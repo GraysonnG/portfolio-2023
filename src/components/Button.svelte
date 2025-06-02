@@ -80,8 +80,8 @@
     width: fit-content;
     top: 0;
     transition: all 600ms;
-    background-color: transparent;
-    color: var(--color-dark);
+    background-color: var(--color-button-variant);
+    color: var(--color-on-button-variant);
     border: 3px solid transparent;
     border-radius: 0.5em;
     padding: 0.75em 3.5em;
@@ -93,8 +93,8 @@
 
   button.primary, .button.primary {
     border-color: transparent;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--color-button);
+    color: var(--color-on-button);
     box-shadow: 0 0.5rem 1rem var(--color-primary-500-25);
   }
 
@@ -108,7 +108,7 @@
 
   .disabled {
     pointer-events: none;
-    background-color: rgb(100,100,100) !important;
+    background-color: var(--color-gray-500) !important;
     box-shadow: none !important;
   }
 </style>

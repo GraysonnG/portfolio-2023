@@ -42,7 +42,7 @@
     line-height: 1;
     left: 0ch;
     height: 1em;
-    color: var(--color-white);
+    color: var(--color-on-surface-alt);
   }
 
   span:first-child {

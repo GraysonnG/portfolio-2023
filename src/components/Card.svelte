@@ -92,7 +92,7 @@
   }
 
   .img-placeholder {
-    background-color: var(--color-light);
+    background-color: var(--color-surface);
   }
 
   .content {
@@ -142,8 +142,8 @@
 
   .chip {
     font-weight: 600;
-    color: var(--color-primary-700);
-    background-color: var(--color-primary-500-25);
+    color: var(--color-on-chip);
+    background-color: var(--color-chip);
     padding: 0.25rem 1rem;
     border-radius: 0.3rem;
   }

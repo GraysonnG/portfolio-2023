@@ -79,7 +79,7 @@
   }
 
   .img {
-    background-color: var(--color-light);
+    background-color: var(--color-surface);
   }
 
   .img::after {
@@ -115,14 +115,14 @@
   }
 
   h2 {
-    color: var(--color-dark);
+    color: var(--color-on-surface);
     font-size: 2.5rem;
     font-weight: 900;
     font-stretch: 100%;
   }
 
   h3 {
-    color: var(--color-dark);
+    color: var(--color-on-surface);
     font-size: 1.25rem;
     font-weight: 900;
     font-stretch: 100%;
@@ -156,7 +156,7 @@
     width: 5rem;
     border-radius: 1rem;
     overflow: hidden;
-    background-color: white;
+    background-color: var(--color-surface);
     display: flex;
     align-items: center;
     isolation: isolate;
@@ -211,14 +211,12 @@
     }
 
     h2 {
-      color: var(--color-dark);
       font-size: 3.5rem;
       font-weight: 900;
       font-stretch: 100%;
     }
 
     h3 {
-      color: var(--color-dark);
       font-size: 2.5rem;
       font-weight: 900;
       font-stretch: 100%;

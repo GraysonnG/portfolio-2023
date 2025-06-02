@@ -13,6 +13,7 @@
 	import { create_in_transition } from 'svelte/internal';
 	import isSplit from '../helpers/splithelper';
 	import ScrollIndicator from '../components/ScrollIndicator.svelte';
+	import ColorModeToggle from '../components/ColorModeToggle.svelte';
 
   const duration = 800;
   const x = 200;
@@ -60,6 +61,7 @@
 <Watermark words={getWords($page.url.pathname)} duration={duration * 2} />
 
 <ScrollIndicator />
+<ColorModeToggle isSplit={isSplit($page.route.id)} />
 
 {#if isSplit($page.route.id)}
   <div bind:this={panel} transition:shrink={{ direction: 'right', duration: duration }}>

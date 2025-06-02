@@ -78,7 +78,7 @@
     isolation: isolate;
     display: flex;
     text-decoration: none;
-    color: var(--color-dark);
+    color: var(--color-on-surface);
   }
 
   .blog::after {
@@ -93,7 +93,7 @@
 
   .blog:hover::after {
     inset: -0.5rem;
-    border: 3px solid var(--color-dark);
+    border: 3px solid var(--color-on-surface);
   }
 
   .blog .card-content {
@@ -121,7 +121,7 @@
   .placeholder {
     width: min(20em, 100%);
     aspect-ratio: 1;
-    background-color: var(--color-light);
+    background-color: var(--color-surface);
     border-radius: 0.5em;
   }
 

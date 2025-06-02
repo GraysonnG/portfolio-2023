@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { BlogData } from "../../../api/client";
 	import Image from "../../../components/Image.svelte";
-  import hljs from "highlight.js";
+  import hljs from "highlight.js/lib/core";
+  import kotlin from "highlight.js/lib/languages/kotlin";
   import { onMount } from "svelte";
 	import SharingButtons from "../../../components/SharingButtons.svelte";
   import { page } from "$app/stores";
@@ -14,6 +15,7 @@
   var date = new Date(data.blog.date);
   
   onMount(() => {
+    hljs.registerLanguage("kotlin", kotlin)
     hljs.highlightAll()
   })
 </script>
@@ -103,7 +105,7 @@
   }
 
   .content > :global(:not(pre)) {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   .content > :global(p) {
@@ -119,15 +121,15 @@
   }
 
   .content :global(pre > code) {
-    padding: 0.5em;
+    padding: 1em;
     border: none;
     border-radius: 0.5em;
-    background-color: #0d1117;
+    background-color: var(--color-primary-900);
     color: var(--color-light);
     display: block;
     width: 100%;
     line-height: 1.2;
-    outline: 3px solid var(--color-white);
+    outline: 3px solid var(--color-container);
     box-shadow: 0 0 1rem rgba(0,0,0,0.5);
   }
   
@@ -186,6 +188,28 @@
     border-radius: 0.5em;
     color: var(--color-white);
     background-color: rgba(0,0,0,0.7);
+  }
+
+  :global(body.dark) .content > :global(:not(pre)) {
+    opacity: 0.9;
+  }
+
+  :global(body.dark) .content :global(a) {
+    color: var(--color-primary-300);
+    opacity: 1;
+    border-bottom-width: 2px;
+  }
+
+  :global(body.dark) .content :global(code) {
+    color: var(--color-primary-300);
+    background-color: var(--color-primary-500-25);
+    border: 2px solid var(--color-primary);
+  }
+
+  :global(body.dark) .content :global(pre > code) {
+    outline-color: var(--color-primary-700);
+    background-color: var(--color-primary-900);
+    color: var(--color-light);
   }
 
   @media screen and (max-width: 1200px) {

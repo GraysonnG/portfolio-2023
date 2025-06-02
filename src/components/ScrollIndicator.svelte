@@ -41,7 +41,7 @@
     bottom: 4rem;
     left: 50%;
     font-size: 2rem;
-    color: var(--color-dark);
+    color: var(--color-on-surface);
     cursor: pointer;
     transition: transform 200ms, opacity 1200ms, color 1200ms;
     animation: bounce 2s infinite;

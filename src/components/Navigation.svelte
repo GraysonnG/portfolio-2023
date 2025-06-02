@@ -178,7 +178,6 @@
 
   nav {
     position: relative;
-    
   }
 
   .puck {
@@ -217,7 +216,7 @@
     font-weight: 600;
     font-stretch: 100%;
     transition: color 300ms ease-in-out;
-    color: var(--color-dark);
+    color: var(--color-on-surface);
   }
 
   li:first-child {
@@ -225,14 +224,14 @@
   }
 
   aside:not(.split) .puck {
-    border-color: var(--color-dark) !important;
+    border-color: var(--color-on-surface) !important;
   }
 
   aside .container::after {
     background-color: transparent;
     opacity: 1;
     backdrop-filter: blur(1em) !important;
-    box-shadow: 0 1em 10em rgba(0 0 0 / 0.3);
+    box-shadow: 0 1em 5em rgba(0 0 0 / 0.3);
     z-index: -2;
   }
 
@@ -246,7 +245,7 @@
     width: calc(100% + 6em);
     z-index: -1;
     border-radius: 100em;
-    background-color: var(--color-light);
+    background-color: var(--color-surface);
     opacity: 0.8;
   }
 
@@ -314,11 +313,11 @@
 
   @media screen and (max-width: 1200px) {
     .puck {
-      border-color: var(--color-dark) !important;
+      border-color: var(--color-on-surface) !important;
     }
 
     aside li > a {
-      color: var(--color-dark);
+      color: var(--color-on-surface);
     }
   }
 

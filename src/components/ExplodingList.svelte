@@ -71,11 +71,12 @@
     position: relative;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
-    background-color: var(--color-primary-500-25);
+    background-color: var(--color-chip);
     font-weight: bold;
-    color: var(--color-primary);
+    color: var(--color-on-chip);
     transform: translate(0,0);
     will-change: transform, opacity, top, left;
+    overflow: hidden;
   }
 
   span::after {
@@ -83,7 +84,7 @@
     content: "";
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: var(--color-white);;
     animation: blink var(--duration) infinite;
     animation-delay: var(--delay);
     opacity: 0;

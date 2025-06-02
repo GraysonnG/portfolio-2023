@@ -189,7 +189,8 @@
     width: 100%;
     padding: 1em;
     border: none;
-    background-color: rgb(200,200,200);
+    background-color: var(--color-container);
+    color: var(--color-on-container);
     max-width: 92vw;
   }
 

@@ -131,4 +131,10 @@
       font-size: 1em;
     }
   }
+
+  :global(body.dark) h1 {
+    background: var(--color-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+  }
 </style>
