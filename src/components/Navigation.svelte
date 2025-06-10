@@ -185,13 +185,21 @@
     width: 0;
     height: 0;
     border-radius: 3em;
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-500-25);
     left: 0;
     top: 0;
-    z-index: 2;
-    transition: left 300ms, width 300ms, border 300ms;
+    z-index: -1;
+    transition: left 300ms cubic-bezier(.15,1,.19,1.19), width 300ms, border 300ms;
     pointer-events: none;
-    opacity: 0.3;
+  }
+
+  .puck::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--color-primary-300);
+    border-radius: 3em;
+    opacity: 0.5;
   }
 
   ul {
@@ -246,6 +254,7 @@
     z-index: -1;
     border-radius: 100em;
     background-color: var(--color-surface);
+    border: 1.5px solid var(--color-on-surface-alt);
     opacity: 0.8;
   }
 
@@ -257,27 +266,6 @@
       left: 0;
       width: 100vw;
       background-color: var(--color-background);
-    }
-
-    aside::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgb(255,255,255,0.05);
-    }
-
-    aside .container::after {
-      background-color: var(--color-light);
-      transition: background-color 0ms 300ms;
-      z-index: -2;
-    }
-
-    aside:not(.split) .container::after {
-      box-shadow: none;
-      border-top: 1px solid var(--color-white);
     }
   
 
@@ -296,15 +284,27 @@
     }
 
     a.mobile {
+      box-sizing: border-box;
       display: block;
       padding: 1em 2em;
+      border-radius: 3em;
+      border: 1px solid transparent;
     }
 
     a.mobile.active {
-      background-color: var(--color-primary);
-      border-radius: 0.5em;
-      color: var(--color-light) !important;
+      position: relative;
+      border: 1px solid var(--color-primary);
     }
+
+    a.mobile.active::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 3em;
+      box-shadow: 0 0 0.25em var(--color-dark);
+      background-color: var(--color-primary);
+      opacity: 0.3;
+      z-index: -1;}
 
     a:not(.mobile) {
       display: none;

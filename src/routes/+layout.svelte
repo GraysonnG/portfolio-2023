@@ -27,7 +27,7 @@
       case "/":
         return home
       default: 
-        return [...(path.split("/").filter(p => p != ""))] || home
+        return [...(path.split("/").filter(p => p != ""))]
     }
   }
 

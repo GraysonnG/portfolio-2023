@@ -31,14 +31,9 @@
     right: 2rem;
   }
 
-  div button.split {
-    border-color: var(--color-light);
-    color: var(--color-light);
-  }
-
   button {
     background: transparent;
-    border: 3px solid var(--color-on-surface);
+    border: 1px solid var(--color-on-surface-alt);
     cursor: pointer;
     font-size: 2em;
     color: var(--color-on-surface);
@@ -47,5 +42,35 @@
     aspect-ratio: 1;
     height: 2em;
     border-radius: 50%;
+    backdrop-filter: blur(0.5em);
+  }
+
+  button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-container);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: -1;
+    opacity: 0.3;
+    box-shadow: 0 0 0.25em var(--color-dark);
+  }
+
+  button.split {
+    border-color: var(--color-light);
+    color: var(--color-light);
+  }
+
+  @media screen and (max-width: 600px) {
+    div {
+      bottom: 5rem;
+      right: 1rem;
+    }
+
+    button.split {
+      border-color: var(--color-on-surface-alt);
+      color: var(--color-on-surface);
+    }
   }
 </style>
