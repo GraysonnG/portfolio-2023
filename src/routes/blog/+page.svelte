@@ -1,10 +1,15 @@
 <script lang="ts">
   import type { BlogData } from "../../api/client";
+	import Button from "../../components/Button.svelte";
 	import Image from "../../components/Image.svelte";
 	import markdownToTxt from "../../helpers/mdtotxt";
   export let data: {
     blogs: BlogData[]
   }
+
+  const makeUrl = (slug: string) => {
+    return `/blog/${slug}`;
+  };
 
 </script>
 
@@ -16,7 +21,7 @@
   {#if data.blogs.length > 0}
     <div class="blogs">
       {#each data.blogs as blog}
-        <a class="blog" href="/blog/{blog.slug}">
+        <div class="blog">
           <div class="img">
             <Image src={blog.img} alt={blog.title}>
               <div class="placeholder"></div>
@@ -27,8 +32,19 @@
             <p>
               {markdownToTxt(blog.markdown).slice(0, 350).concat("...")}
             </p>
+            <Button data={
+              {
+                title: "Read More", 
+                url: makeUrl(blog.slug), 
+                icon: "fa-solid fa-arrow-right", 
+                flip: true, 
+                primary: true
+              }
+                }>
+              <span>Read More...</span>
+            </Button>
           </div>
-        </a>
+        </div>
       {/each}
     </div>
   {:else}
@@ -91,11 +107,6 @@
     transition: all 300ms ease-in-out;
   }
 
-  .blog:hover::after {
-    inset: -0.5rem;
-    border: 3px solid var(--color-on-surface);
-  }
-
   .blog .card-content {
     margin-inline-start: 1em;
     width: 100%;
@@ -112,10 +123,17 @@
 
   .blog p {
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 450;
     font-stretch: 100%;
     line-height: 1.75;
     opacity: 0.7;
+  }
+
+  .blog :global(.button) {
+    position: absolute;
+    top: unset;
+    bottom: 0;
+    right: 0;
   }
 
   .placeholder {

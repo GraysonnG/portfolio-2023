@@ -127,7 +127,7 @@
   .card :global(p) {
     font-size: 1.2rem;
     line-height: 1.75;
-    font-weight: 600;
+    font-weight: 450;
     opacity: 0.7;
     margin-top: 1rem;
   }
@@ -135,7 +135,7 @@
   .chips {
     margin-top: auto;
     display: flex;
-    gap: 1em;
+    gap: .75em;
     grid-area: tags;
     flex-wrap: wrap;
   }
@@ -143,9 +143,10 @@
   .chip {
     font-weight: 600;
     color: var(--color-on-chip);
-    background-color: var(--color-chip);
+    background-color: var(--color-primary-500-25);
     padding: 0.25rem 1rem;
-    border-radius: 0.3rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 3rem;
   }
 
   @media screen and (max-width: 1200px) {

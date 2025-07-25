@@ -13,7 +13,7 @@
   {#each data.projects as project}
     <Card img={project.img} langs={project.tags} buttons={project.buttons}>
       <h2 slot="title">{ project.title }</h2>
-      <p slot="description">{ project.description }</p>
+      <p class="description" slot="description">{ project.description }</p>
     </Card>
   {/each}
 </section>

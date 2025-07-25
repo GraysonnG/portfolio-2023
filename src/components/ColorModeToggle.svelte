@@ -32,29 +32,36 @@
   }
 
   button {
+    display: block;
     background: transparent;
     border: 1px solid var(--color-on-surface-alt);
     cursor: pointer;
     font-size: 2em;
     color: var(--color-on-surface);
-    transition: all 0.3s ease;
-    transition-delay: 500ms;
     aspect-ratio: 1;
+    transition: all 300ms;
     height: 2em;
     border-radius: 50%;
-    backdrop-filter: blur(0.5em);
+    box-shadow: 0 0 1em 0 rgba(0 0 0 / 0.3);
   }
 
   button::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: var(--color-container);
+    background-color: transparent;
     border-radius: 50%;
-    transition: all 0.3s ease;
     z-index: -1;
-    opacity: 0.3;
-    box-shadow: 0 0 0.25em var(--color-dark);
+    opacity: 1;
+  }
+
+  button::after {
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(0.5em);
+    z-index: -2;
   }
 
   button.split {

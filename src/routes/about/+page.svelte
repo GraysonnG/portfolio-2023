@@ -131,7 +131,7 @@
   p {
     font-size: 1rem;
     margin-top: 1rem;
-    font-weight: 600;
+    font-weight: 400;
     opacity: 0.7;
     line-height: 1.75;
   }
@@ -225,7 +225,7 @@
     p {
       font-size: 1.1rem;
       margin-top: 1rem;
-      font-weight: 600;
+      font-weight: 450;
       opacity: 0.7;
       line-height: 1.75;
     }

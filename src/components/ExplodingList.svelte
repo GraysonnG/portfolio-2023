@@ -70,8 +70,9 @@
   span {
     position: relative;
     padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    background-color: var(--color-chip);
+    background-color: var(--color-primary-500-25);
+    border: 1px solid var(--color-primary);
+    border-radius: 3rem;
     font-weight: bold;
     color: var(--color-on-chip);
     transform: translate(0,0);
@@ -84,7 +85,7 @@
     content: "";
     width: 100%;
     height: 100%;
-    background-color: var(--color-white);;
+    background-color: var(--color-primary-300);
     animation: blink var(--duration) infinite;
     animation-delay: var(--delay);
     opacity: 0;
