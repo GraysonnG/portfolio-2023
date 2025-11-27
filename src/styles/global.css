@@ -75,6 +75,7 @@ select {
 
 :root {
   --color-black: rgba(0, 0, 0, 1);
+  --color-primary-100: rgb(180, 150, 255);
   --color-primary-300: rgb(140, 52, 255);
   --color-primary: rgba(112, 0, 255, 1);
   --color-primary-700: rgba(57, 0, 129, 1);
@@ -104,6 +105,9 @@ select {
   --color-on-chip: var(--color-primary-700);
   --color-chip-variant: var(--color-primary-500-25);
   --color-on-chip-variant: var(--color-primary);
+
+  --color-decoration: var(--color-container);
+  --color-decoration-split: var(--color-primary-100);
 
   --container-width: 1400px;
 }
@@ -150,4 +154,6 @@ body.dark {
     --color-on-chip: var(--color-light);
     --color-button-variant: transparent;
     --color-on-button-variant: var(--color-on-surface);
+    --color-decoration: var(--color-container);
+    --color-decoration-split: var(--color-primary-700);
 }

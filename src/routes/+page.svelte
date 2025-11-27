@@ -6,6 +6,7 @@
 	import type { HomeData } from "../api/client";
 	import Button from "../components/Button.svelte";
 	import MetaTags from "../components/meta/MetaTags.svelte";
+	import RandomShapes from "../components/RandomShapes.svelte";
 
   let h1: HTMLElement
   let p: HTMLElement

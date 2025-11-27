@@ -33,10 +33,13 @@
 <style>
   img {
     opacity: 1;
-    transition: opacity 1000ms;
+    transition: opacity 1000ms, scale 1000ms;
   }
   img:not(.loaded) {
     opacity: 0;
     position: absolute;
+  }
+  img:hover {
+    scale: 1.05;
   }
 </style>

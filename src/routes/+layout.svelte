@@ -14,6 +14,7 @@
 	import isSplit from '../helpers/splithelper';
 	import ScrollIndicator from '../components/ScrollIndicator.svelte';
 	import ColorModeToggle from '../components/ColorModeToggle.svelte';
+	import RandomShapes from '../components/RandomShapes.svelte';
 
   const duration = 800;
   const x = 200;
@@ -43,6 +44,9 @@
 </script>
 
 <Navigation />
+
+
+<RandomShapes />
 
 <main>
   <Transition 
