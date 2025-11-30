@@ -1,76 +1,72 @@
 <script> 
-	import { onMount } from "svelte";
-	import isSplit from "../helpers/splithelper";
+	import { onMount } from "svelte"
+	import isSplit from "../helpers/splithelper"
   import { page } from "$app/stores"
 
   // generate 8 sets of 3-5 points
-  let clientWidth = 0;
-  $: numShapes = Math.ceil(clientWidth / 40);
+  let clientWidth = 0
+  $: numShapes = Math.ceil(clientWidth / 40)
   $: shapes = (() => {
-    const arr = [];
-    for (let i = 0; i < numShapes; i++) {
-      arr.push(generateShape(i));
-    }
-    return arr;
+    const arr = []
+    for (let i = 0; i < numShapes; i++) { arr.push(generateShape(i)) }
+    return arr
   })()
   $: stars = Array.from({ length: 128 }, () => {
-    return { x: Math.random() * 100, y: Math.random() * 100 };
+    return { x: Math.random() * 100, y: Math.random() * 100 }
   })
 
   // animate the shapes slowly in a random direction
   onMount(() => {
-    
-    window.onmousemove = handleMouseOverSVG;
-    let svgs = document.querySelectorAll("svg.random-shape");
+    window.onmousemove = handleMouseOverSVG
+    let svgs = document.querySelectorAll("svg.random-shape")
+
     setInterval(() => {
       if (svgs.length != shapes.length) {
-        console.log("updating svgs");
-        svgs = document.querySelectorAll("svg.random-shape");
+        console.log("updating svgs")
+        svgs = document.querySelectorAll("svg.random-shape")
       }
-    }, 1000);
+    }, 1000)
 
     setInterval(() => {
       if (svgs.length > 0) {
-        const element = svgs[Math.floor(Math.random() * svgs.length)]
-        element.dataset.hovered = "true";
+        const shape = svgs[Math.floor(Math.random() * svgs.length)]
+        const star = document.getElementById(`star-${Math.floor(Math.random() * stars.length)}`)
+        shape.dataset.hovered = "true"
+        star.dataset.hovered = "true"
         setTimeout(() => {
-          element.dataset.hovered = "false";
-        }, 2000);
-        const star = document.getElementById(`star-${Math.floor(Math.random() * stars.length)}`);
-        star.dataset.hovered = "true";
-        setTimeout(() => {
-          star.dataset.hovered = "false";
-        }, 2000);
+          shape.dataset.hovered = "false"
+          star.dataset.hovered = "false"
+        }, 2000)
       }
-    }, 1000);
+    }, 1000)
 
 
     function animateShapes() {
       for (let i = 0; i < shapes.length; i++) {
         if (shapes[i].isDead) {
-          shapes[i] = generateShape(i);
+          shapes[i] = generateShape(i)
         }
       }
 
       shapes.forEach(shape => {
         const svg = document.getElementById(shape.id)
-        shape.split = isSplit($page.route.id);
-        shape.hovered = svg?.dataset.hovered === "true";
-        shape.x += Math.cos(shape.angle) * shape.speed;
-        shape.y += Math.sin(shape.angle) * shape.speed;
-        shape.rotation += shape.rotationSpeed;
-        shape.opacity += 0.01;
-        if (shape.opacity > 1) shape.opacity = 1;
-        if (shape.rotation >= 360) shape.rotation -= 360;
+        shape.split = isSplit($page.route.id)
+        shape.hovered = svg?.dataset.hovered === "true"
+        shape.x += Math.cos(shape.angle) * shape.speed
+        shape.y += Math.sin(shape.angle) * shape.speed
+        shape.rotation += shape.rotationSpeed
+        shape.opacity += 0.01
+        if (shape.opacity > 1) shape.opacity = 1
+        if (shape.rotation >= 360) shape.rotation -= 360
         if (shape.x < 0 || shape.x > 100 || shape.y < 0 || shape.y > 100) shape.isDead = true
       })
       
-      shapes = shapes;
+      shapes = shapes
 
-      requestAnimationFrame(animateShapes);
+      requestAnimationFrame(animateShapes)
     }
 
-    animateShapes();
+    animateShapes()
 
     return () => {
       window.onmousemove = null
@@ -78,15 +74,16 @@
   })
 
   function generateShape(index) {
-    const numPoints = Math.floor(Math.random() * 3) + 3; // 3 to 5 points
+    const numPoints = Math.floor(Math.random() * 3) + 3 // 3 to 5 points
     const points = Array.from({ length: numPoints }, () => {
-      const x = 5 + Math.random() * 90;
-      const y = 5 + Math.random() * 90;
+      const x = 5 + Math.random() * 90
+      const y = 5 + Math.random() * 90
       return { 
         x,
         y,
-      };
-    });
+      }
+    })
+
     return {
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -100,37 +97,29 @@
       hovered: false,
       isDead: false,
       points
-    };
+    }
   }
 
   // a function that given an svg element, determines if the mouse pointer is over the svg
   function handleMouseOverSVG(event) {
-    const svgs = document.querySelectorAll("svg");
+    const svgs = document.querySelectorAll("svg")
     svgs.forEach((svg) => {
-      const rect = svg.getBoundingClientRect();
-      const mouseX = event.clientX;
-      const mouseY = event.clientY;
-
-      const hitArea = 50; // percent of the shape
-      const xWithinHitArea = rect.left + (rect.width * (hitArea / 100)) / 2 <= mouseX && mouseX <= rect.right - (rect.width * (hitArea / 100)) / 2;
-      const yWithinHitArea = rect.top + (rect.height * (hitArea / 100)) / 2 <= mouseY && mouseY <= rect.bottom - (rect.height * (hitArea / 100)) / 2;
-      const withinHitArea = xWithinHitArea && yWithinHitArea;
+      const rect = svg.getBoundingClientRect()
+      const mouseX = event.clientX
+      const mouseY = event.clientY
+      const hitArea = -25 // percent of the shape
+      const xWithinHitArea = rect.left + (rect.width * (hitArea / 100)) / 2 <= mouseX && mouseX <= rect.right - (rect.width * (hitArea / 100)) / 2
+      const yWithinHitArea = rect.top + (rect.height * (hitArea / 100)) / 2 <= mouseY && mouseY <= rect.bottom - (rect.height * (hitArea / 100)) / 2
+      const withinHitArea = xWithinHitArea && yWithinHitArea
 
       if (withinHitArea) {
-        svg.dataset.hovered = "true";
+        svg.dataset.hovered = "true"
         setTimeout(() => {
-          svg.dataset.hovered = "false";
-        }, 2000);
+          svg.dataset.hovered = "false"
+        }, 2000)
       }
-    });
+    })
   }
-
-  
-
-  function handleClientWidth() {
-    
-  }
-
 </script>
 
 <div class="overlay" bind:clientWidth={clientWidth}>
@@ -141,7 +130,7 @@
       viewBox="0 0 10 10"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="5" cy="5" r="4" style="fill: transparent; stroke: var(--color-decoration); stroke-width: 1.5;"/>
+      <circle cx="5" cy="5" r="3" style="fill: transparent; stroke: var(--color-decoration); stroke-width: 1.5;"/>
     </svg>
   {/each}
 
@@ -168,6 +157,11 @@
     height: 200px;
   }
 
+  svg {
+    transition: scale 0.5s ease;
+    transform-origin: center center;
+  }
+
   svg polygon, svg circle {
     transition: stroke 0.5s ease;
   }
@@ -180,6 +174,11 @@
   :global(.overlay svg[data-hovered="true"]) polygon {
     stroke: var(--color-primary-300) !important;
     z-index: 2;
+  }
+
+  :global(.overlay svg[data-hovered="true"]) {
+    z-index: 2;
+    scale: 1.01;
   }
 
   .overlay {
