@@ -83,20 +83,6 @@
         <li>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
-            href="/projects" 
-            class:active={path.includes("projects")}>Projects</a>
-          <a 
-            on:mouseover={handleMouseOver} on:focus={() => {}}
-            aria-hidden="true"
-            href="/projects"
-            class={"mobile"}
-            class:active={path.includes("projects")}>
-            <i class="fa-solid fa-table-list"></i>
-          </a>
-        </li>
-        <li>
-          <a 
-            on:mouseover={handleMouseOver} on:focus={() => {}}
             href="/about" 
             class:active={path.includes("about")}>About</a>
           <a 
@@ -108,6 +94,20 @@
             <i class="fa-solid fa-user"></i>
           </a>
         </li>
+				<li>
+					<a
+						on:mouseover={handleMouseOver} on:focus={() => {}}
+						href="/projects"
+						class:active={path.includes("projects")}>Projects</a>
+					<a
+						on:mouseover={handleMouseOver} on:focus={() => {}}
+						aria-hidden="true"
+						href="/projects"
+						class={"mobile"}
+						class:active={path.includes("projects")}>
+						<i class="fa-solid fa-table-list"></i>
+					</a>
+				</li>
         <li>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}

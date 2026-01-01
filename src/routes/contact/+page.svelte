@@ -103,7 +103,11 @@
     <div class="socials">
       <ul>
         {#each data.contactItems as contactItem}
-          <li><i class={contactItem.icon}/> {contactItem.text}</li>
+          <li>
+						<a href="{contactItem.link}" target="_blank" rel="noopener noreferrer">
+							<i class={contactItem.icon}/> {contactItem.text}
+						</a>
+					</li>
         {/each}
       </ul>
     </div>
@@ -142,7 +146,11 @@
     color: var(--color-light);
     grid-area: socials;
   }
-  
+
+	.socials a {
+		color: var(--color-light);
+		text-decoration: none;
+	}
   .socials ul {
     list-style: none;
     padding: 0;

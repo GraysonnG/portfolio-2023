@@ -28,6 +28,7 @@ export interface AboutData {
 export interface HistoryItem {
 	years: string;
 	title: string;
+	current: boolean;
 	content: string;
 	logo: string;
 }
@@ -41,6 +42,7 @@ export interface ContactData {
 
 export interface ContactItem {
 	text: string;
+	link: string;
 	icon: string;
 }
 

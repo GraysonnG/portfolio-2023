@@ -60,6 +60,7 @@ class PortfolioSanityClient implements Client {
 			headshotbg: `/i/${rawData.headshot_bg.asset._ref}`,
 			history: rawData.history.map((h: any) => ({
 				years: h.years,
+				current: h.current,
 				title: h.title,
 				content: h.content,
 				logo: `/i/${h.logo.asset._ref}`

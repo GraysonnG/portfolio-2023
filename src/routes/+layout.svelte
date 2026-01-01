@@ -45,9 +45,6 @@
 
 <Navigation />
 
-
-<RandomShapes />
-
 <main>
   <Transition 
     intr={{
@@ -65,7 +62,7 @@
 <Watermark words={getWords($page.url.pathname)} duration={duration * 2} />
 
 <ScrollIndicator />
-<ColorModeToggle isSplit={isSplit($page.route.id)} />
+<!--<ColorModeToggle isSplit={isSplit($page.route.id)} />-->
 
 {#if isSplit($page.route.id)}
   <div bind:this={panel} transition:shrink={{ direction: 'right', duration: duration }}>

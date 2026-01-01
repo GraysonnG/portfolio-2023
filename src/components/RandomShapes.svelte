@@ -1,18 +1,44 @@
-<script> 
+<script lang="ts">
 	import { onMount } from "svelte"
 	import isSplit from "../helpers/splithelper"
   import { page } from "$app/stores"
 
-  // generate 8 sets of 3-5 points
+	interface Point {
+		x: number;
+		y: number;
+	}
+
+	interface Shape {
+		x: number;
+		y: number;
+		id: string;
+		angle: number;
+		speed: number;
+		rotationSpeed: number;
+		rotation: number;
+		opacity: number;
+		split: boolean;
+		hovered: boolean;
+		isDead: boolean;
+		points: Point[];
+	}
+
+  // the width of the website
   let clientWidth = 0
+
+	// clientWidth / 40
   $: numShapes = Math.ceil(clientWidth / 40)
+
+	// list of shapes - numShapes length
   $: shapes = (() => {
-    const arr = []
+    const arr: Shape[] = []
     for (let i = 0; i < numShapes; i++) { arr.push(generateShape(i)) }
     return arr
   })()
+
+	// list of stars - 128 length
   $: stars = Array.from({ length: 128 }, () => {
-    return { x: Math.random() * 100, y: Math.random() * 100 }
+    return { x: Math.random() * 100, y: Math.random() * 100 } as Point
   })
 
   // animate the shapes slowly in a random direction
@@ -22,15 +48,15 @@
 
     setInterval(() => {
       if (svgs.length != shapes.length) {
-        console.log("updating svgs")
         svgs = document.querySelectorAll("svg.random-shape")
       }
     }, 1000)
 
     setInterval(() => {
       if (svgs.length > 0) {
-        const shape = svgs[Math.floor(Math.random() * svgs.length)]
+        const shape: HTMLElement | undefined = svgs[Math.floor(Math.random() * svgs.length)] as HTMLElement | undefined
         const star = document.getElementById(`star-${Math.floor(Math.random() * stars.length)}`)
+				if (shape === undefined || star === null) return;
         shape.dataset.hovered = "true"
         star.dataset.hovered = "true"
         setTimeout(() => {
@@ -41,6 +67,9 @@
     }, 1000)
 
 
+		/**
+		 * A function that handles animating the shapes on the screen
+		 */
     function animateShapes() {
       for (let i = 0; i < shapes.length; i++) {
         if (shapes[i].isDead) {
@@ -73,9 +102,14 @@
     }
   })
 
-  function generateShape(index) {
+	/**
+	 * Given an index this function generates a shape and its underlying data
+	 *
+	 * @param index
+	 */
+  function generateShape(index: number): Shape {
     const numPoints = Math.floor(Math.random() * 3) + 3 // 3 to 5 points
-    const points = Array.from({ length: numPoints }, () => {
+    const points: Point[] = Array.from({ length: numPoints }, () => {
       const x = 5 + Math.random() * 90
       const y = 5 + Math.random() * 90
       return { 
@@ -101,7 +135,7 @@
   }
 
   // a function that given an svg element, determines if the mouse pointer is over the svg
-  function handleMouseOverSVG(event) {
+  function handleMouseOverSVG(event: MouseEvent) {
     const svgs = document.querySelectorAll("svg")
     svgs.forEach((svg) => {
       const rect = svg.getBoundingClientRect()
@@ -145,7 +179,7 @@
       stroke="{shape.split ? 'var(--color-decoration-split)' : 'var(--color-decoration)'}">
       <polygon points="{shape.points.map(point => `${point.x} ${point.y}`).join(', ')}" style="fill: transparent; stroke-width: 1;"/>
       {#each shape.points as point}
-        <circle cx="{point.x}" cy="{point.y}" r="3" style="fill: transparent; stroke: stroke-width: 1;"/>
+        <circle cx="{point.x}" cy="{point.y}" r="3" style="fill: transparent; stroke-width: 1;"/>
       {/each}
     </svg>
   {/each}

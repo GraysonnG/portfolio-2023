@@ -13,15 +13,14 @@
 </svelte:head>
 
 <section class="container">
-  <article>
+  <article class="intro">
     <div class="img">
       <Image clazz="headshot" src={data.headshot} alt="headshot of grayson"/>
       <Image clazz="headshotbg" src={data.headshotbg} alt="headshot of grayson"/>
     </div>
     <div class="content">
       <h3>
-        I'm Grayson,<br>
-        a Software Engineer working remotely in Sterling, Virginia.
+        I'm Grayson,
       </h3>
       <p>
         {@html data.description}
@@ -31,12 +30,30 @@
 
   <article>
     <div class="jobhistory">
+			<h2>Current Roles</h2>
+			<div class="current">
+				{#each data.history.filter((job) => job.current) as job, i}
+					<SimpleCard>
+						<div class="job">
+							<div class="job-logo" style="--shine-delay: {i * 500}ms">
+								<Image src={job.logo} alt={job.title} />
+							</div>
+							<div class="job-content">
+								<h4 class="job-years">{job.years}</h4>
+								<h3>{job.title}</h3>
+								<p>{job.content}</p>
+							</div>
+						</div>
+					</SimpleCard>
+				{/each}
+			</div>
+
       <h2>A brief history</h2>
 
-      {#each data.history as job, i}
+      {#each data.history.filter((job) => !job.current) as job, i}
         <SimpleCard>
           <div class="job">
-            <div class="job-logo" style="--shine-delay: {i * 500}ms">
+            <div class="job-logo" style="--shine-delay: {(i + 1) * 500}ms">
               <Image src={job.logo} alt={job.title} />
             </div>
             <div class="job-content">
@@ -114,6 +131,11 @@
     --border-radius: 1em;
   }
 
+  .intro {
+      display: flex;
+      flex-direction: column;
+  }
+
   h2 {
     color: var(--color-on-surface);
     font-size: 2.5rem;
@@ -142,12 +164,18 @@
     gap: 4rem;
   }
 
+	.jobhistory .current {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
   .job {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    align-items: center;
+    align-items: normal;
   }
 
   .job-logo {
@@ -236,13 +264,23 @@
       gap: 4rem;
     }
 
+		.intro {
+				display: grid;
+				grid-template-columns: 33% 1fr;
+		}
+
+		.jobhistory .current {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+		}
+
     p {
       font-size: 1.2rem;
     }
 
     .job {
       flex-direction: row;
-      gap: 4rem;
+      gap: 2rem;
     }
 
     .job-logo {
