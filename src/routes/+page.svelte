@@ -3,23 +3,23 @@
 	import { cubicInOut } from "svelte/easing";
 	import { create_in_transition } from "svelte/internal";
 	import { fly } from "svelte/transition";
-	import type { HomeData } from "../api/client";
+	import type { ContactItem, HomeData } from '../api/client';
 	import Button from "../components/Button.svelte";
 	import MetaTags from "../components/meta/MetaTags.svelte";
-	import RandomShapes from "../components/RandomShapes.svelte";
 
   let h1: HTMLElement
-  let p: HTMLElement
+  let sub: HTMLElement
   let cta: HTMLElement
 
   export let data: {
-    home: HomeData
+    home: HomeData,
+		contactItems: ContactItem[],
   }
 
 	afterNavigate(({ from }) => {
     if(from === null) {
       create_in_transition(h1, fly, { x: -1000, duration: 2500, easing: cubicInOut }).start()
-      create_in_transition(p, fly, { x: -1000, duration: 2500, delay: 600, easing: cubicInOut }).start()
+      create_in_transition(sub, fly, { x: -1000, duration: 2500, delay: 600, easing: cubicInOut }).start()
       create_in_transition(cta, fly, { y: 1000, duration: 3100, easing: cubicInOut }).start()
     }
   })
@@ -35,7 +35,16 @@
 
 <section class="container">
   <h1 bind:this={h1}>{ data.home.mainHeading }</h1>
-  <p bind:this={p}>{ data.home.subHeading }</p>
+  <div bind:this={sub} class="subtitle">
+		<p >{ data.home.subHeading }</p>
+		<div class="contact">
+			{#each data.contactItems.filter((i) => i.link) as info }
+				<a href="{info.link}" target="_blank" rel="noopener noreferrer">
+					<i class="{info.icon}" />
+				</a>
+			{/each}
+		</div>
+	</div>
 
   <div class="cta" bind:this={cta}>
     {#each data.home.buttons as button}
@@ -79,6 +88,39 @@
     font-stretch: 125%;
     max-width: 100vw;
   }
+
+  .subtitle {
+		display: flex;
+		flex-direction: column;
+  }
+
+	.contact {
+			margin-top: 1rem;
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			gap: 2.5em;
+			left: 1.55em;
+	}
+
+	.contact a {
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			aspect-ratio: 1;
+			font-size: 1.5em;
+			height: 2em;
+			border-radius: 50%;
+			color: var(--color-on-surface);
+			transition: color 0.2s, background 0.5s, scale 1s;
+	}
+
+	.contact a:hover {
+      color: var(--color-on-button);
+      background: var(--color-primary);
+			scale: 1.1;
+	}
 
   .cta {
     position: relative;
