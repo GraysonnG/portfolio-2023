@@ -17,6 +17,7 @@
     <div class="img">
       <Image clazz="headshot" src={data.headshot} alt="headshot of grayson"/>
       <Image clazz="headshotbg" src={data.headshotbg} alt="headshot of grayson"/>
+			<span class="loc"><i class="fa-solid fa-map-pin"></i> Virginia, USA</span>
     </div>
     <div class="content">
       <h3>
@@ -118,6 +119,27 @@
     z-index: -1;
     transform: scale(1.05);
   }
+
+	.img .loc {
+			position: absolute;
+			z-index: 99;
+			color: var(--color-on-surface-alt);
+			transition: color .5s, background-color .5s;
+			bottom: 1em;
+			right: 1em;
+			font-weight: bold;
+			padding: 0.5em 1em;
+			border-radius: 2em;
+	}
+
+	.img .loc i {
+			margin-right: 0.5em;
+	}
+
+	.img:hover .loc {
+      background: var(--color-surface);
+      color: var(--color-on-surface);
+	}
 
   article {
     position: relative;

@@ -46,10 +46,9 @@
   use:viewport
   on:enterViewport={onEnter}
   class:start={!finished}
-  style="--duration: {items.length}s;"
 >
   {#each items as item, i}
-    <span style="--delay: {i * 1000}ms;">{item}</span>
+    <span>{item}</span>
   {/each}
 </div>
 
@@ -78,7 +77,12 @@
     transform: translate(0,0);
     will-change: transform, opacity, top, left;
     overflow: hidden;
+		transition: scale 1s, rotate 1s;
   }
+
+	span:hover {
+		scale: 1.1;
+	}
 
   span::after {
     position: absolute;
@@ -86,8 +90,6 @@
     width: 100%;
     height: 100%;
     background-color: var(--color-primary-300);
-    animation: blink var(--duration) infinite;
-    animation-delay: var(--delay);
     opacity: 0;
   }
 
@@ -99,20 +101,6 @@
       flex-grow: 1;
       display: grid;
       place-items: center;
-    }
-  }
-
-
-  /* Animation */
-  @keyframes blink {
-    49% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.25;
-    }
-    75% {
-      opacity: 0;
     }
   }
 </style>
