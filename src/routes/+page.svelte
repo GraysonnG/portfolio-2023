@@ -180,15 +180,4 @@
       -webkit-background-clip: text;
       background-clip: text;
   }
-
-  @media screen and (max-height: 930px) {
-      h1 {
-					max-width: 75vw;
-          font-size: 10em;
-      }
-
-			.cta {
-					margin-top: 3em;
-			}
-  }
 </style>
