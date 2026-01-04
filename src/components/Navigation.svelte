@@ -108,20 +108,20 @@
 						<i class="fa-solid fa-table-list"></i>
 					</a>
 				</li>
-        <li>
-          <a 
-            on:mouseover={handleMouseOver} on:focus={() => {}}
-            href="/blog" 
-            class:active={path.includes("blog")}>Blog</a>
-          <a 
-            on:mouseover={handleMouseOver} on:focus={() => {}}
-            aria-hidden="true"
-            href="/blog" 
-            class={"mobile"}
-            class:active={path.includes("blog")}>
-            <i class="fa-solid fa-square-rss"></i>
-          </a>
-        </li>
+<!--        <li>-->
+<!--          <a -->
+<!--            on:mouseover={handleMouseOver} on:focus={() => {}}-->
+<!--            href="/blog" -->
+<!--            class:active={path.includes("blog")}>Blog</a>-->
+<!--          <a -->
+<!--            on:mouseover={handleMouseOver} on:focus={() => {}}-->
+<!--            aria-hidden="true"-->
+<!--            href="/blog" -->
+<!--            class={"mobile"}-->
+<!--            class:active={path.includes("blog")}>-->
+<!--            <i class="fa-solid fa-square-rss"></i>-->
+<!--          </a>-->
+<!--        </li>-->
         <li>
           <a 
             on:mouseover={handleMouseOver} on:focus={() => {}}
