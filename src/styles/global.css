@@ -82,6 +82,7 @@ select {
   --color-primary-500-25: rgba(112, 0, 255, 0.25);
   --color-primary-900: rgba(12, 0, 28, 1);
   --color-dark: rgba(13, 13, 13, 1);
+  --color-dark-08: rgba(13, 13, 13, 0.8);
   --color-light: rgba(217, 217, 217, 1);
   --color-light-08: rgba(217, 217, 217, 0.8);
   --color-white: rgba(255, 255, 255, 1);
@@ -152,7 +153,7 @@ body.dark {
     --color-on-surface-alt: #333;
     --color-chip: var(--color-primary-700);
     --color-on-chip: var(--color-light);
-    --color-button-variant: transparent;
+    --color-button-variant: var(--color-dark-08);
     --color-on-button-variant: var(--color-on-surface);
     --color-decoration: var(--color-container);
     --color-decoration-split: var(--color-primary-700);

@@ -82,7 +82,8 @@
     transition: all 600ms;
     background-color: var(--color-button-variant);
     color: var(--color-on-button-variant);
-    border: 3px solid transparent;
+    border: 1px solid var(--color-light);
+		box-shadow: 0 0.5em 2.5em rgba(0 0 0 / 0.2);
     border-radius: 0.5em;
     padding: 0.75em 3.5em;
     font-weight: 700;
