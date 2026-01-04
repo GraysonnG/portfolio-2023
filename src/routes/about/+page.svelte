@@ -4,12 +4,17 @@
 
   import Image from "../../components/Image.svelte";
   import SimpleCard from "../../components/SimpleCard.svelte";
+	import MetaTags from '../../components/meta/MetaTags.svelte';
 
   export let data: AboutData
 </script>
 
 <svelte:head>
   <title>Grayson's Portfolio | About</title>
+	<MetaTags
+		title="Grayson Gullion | Portfolio | About"
+		description="I am a senior software engineer with 8 years of experience and have worked across many different projects with a primary focus on Android and Web."
+	/>
 </svelte:head>
 
 <section class="container">

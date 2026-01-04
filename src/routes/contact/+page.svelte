@@ -3,6 +3,7 @@
 	import type { ContactData } from "../../api/client";
   import Button from "../../components/Button.svelte";
   import { string } from 'yup';
+	import MetaTags from '../../components/meta/MetaTags.svelte';
 
   export let data: ContactData
 
@@ -59,6 +60,10 @@
 
 <svelte:head>
   <title>Grayson's Portfolio | Contact</title>
+	<MetaTags
+		title="Grayson Gullion | Portfolio | Contact"
+		description="Contact me!"
+	/>
 </svelte:head>
 
 <section class="container">
