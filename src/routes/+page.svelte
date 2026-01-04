@@ -99,8 +99,8 @@
 			position: relative;
 			display: flex;
 			flex-direction: row;
-			gap: 2.5em;
-			left: 1.55em;
+			gap: 1.5em;
+			left: 1em;
 	}
 
 	.contact a {
