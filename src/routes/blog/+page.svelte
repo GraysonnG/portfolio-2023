@@ -2,7 +2,7 @@
 	import type { BlogData } from '../../api/client';
 	import Button from '../../components/Button.svelte';
 	import Image from '../../components/Image.svelte';
-	import markdownToTxt from '../../helpers/mdtotxt';
+	// import markdownToTxt from '../../helpers/mdtotxt';
 
 	let { data }: { data: { blogs: BlogData[] } } = $props();
 
@@ -27,9 +27,9 @@
 					</div>
 					<div class="card-content">
 						<h2>{blog.title}</h2>
-						<p>
+						<!-- <p>
 							{markdownToTxt(blog.markdown).slice(0, 350).concat('...')}
-						</p>
+						</p> -->
 						<Button
 							data={{
 								title: 'Read More',
