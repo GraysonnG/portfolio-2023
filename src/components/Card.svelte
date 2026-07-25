@@ -1,197 +1,217 @@
 <script lang="ts">
-  // @ts-nocheck
-	import { create_in_transition } from "svelte/internal";
-	import { fly } from "svelte/transition";
-	import viewport from "../actions/useViewportAction";
-	import type { Button as ButtonType } from "../api/client";
-	import Button from "./Button.svelte";
-	import Image from "./Image.svelte";
-	import { goto } from "$app/navigation";
+	// @ts-nocheck
+	// import { create_in_transition } from 'svelte/internal';
+	import { fly } from 'svelte/transition';
+	import viewport from '../actions/useViewportAction';
+	import type { Button as ButtonType } from '../api/client';
+	import Button from './Button.svelte';
+	import Image from './Image.svelte';
+	import { goto } from '$app/navigation';
 
-  export let img: string
-  export let langs: string[]
-  export let buttons: ButtonType[]
-  export let href: string = null
+	let me: HTMLElement;
 
-  let me: HTMLElement
-  let finished = false
+	interface Props {
+	  img: string;
+	  langs: string[];
+	  buttons: ButtonType[];
+	  href?: string | null | undefined;
+	}
 
-  const onClick = () => {
-    if (href) {
-      goto(href)
-    }
-  }
+	let {
+	  img,
+	  langs,
+	  buttons,
+	  href = null
+    }: Props = $props()
 
-  const onEnter = () => {
-    if (!finished) {
-      create_in_transition(me, fly, { x: 200, duration: 1200 }).start()
-      finished = true
-    }
-  }
+
+	const onClick = () => {
+		if (href) {
+			goto(href);
+		}
+	};
+
+	const onEnter = () => {
+		if (!finished) {
+			// create_in_transition(me, fly, { x: 200, duration: 1200 }).start();
+			finished = true;
+		}
+	};
 </script>
 
-<div 
-  use:viewport 
-  on:click={onClick}
-  on:keypress={{}}
-  on:enterViewport={onEnter}
-  class:clickable={href !== null}
-  class="card" bind:this={me}>
-  <Image src={img}><div class="img-placeholder" /></Image>
-  <div class="content">
-    <div class="text">
-      <slot name="title"/>
-      <slot name="description" />
-    </div>
-    <div class="chips">
-      {#each langs as lang}
-        <div class="chip">{lang}</div>
-      {/each}
-    </div>
-    <div class="buttons">
-      {#each buttons as button}
-        <Button data={button}/>
-      {/each}
-    </div>
-  </div>
+<div
+	use:viewport
+	onclick={onClick}
+	onkeypress={{}}
+	onenterViewport={onEnter}
+	class:clickable={href !== null}
+	class="card"
+	bind:this={me}
+	role="button"
+	tabindex="0"
+>
+	<Image src={img}><div class="img-placeholder"></div></Image>
+	<div class="content">
+		<div class="text">
+			<slot name="title" />
+			<slot name="description" />
+		</div>
+		<div class="chips">
+			{#each langs as lang}
+				<div class="chip">{lang}</div>
+			{/each}
+		</div>
+		<div class="buttons">
+			{#each buttons as button}
+				<Button data={button} />
+			{/each}
+		</div>
+	</div>
 </div>
 
 <style>
-  .card {
-    position: relative;
-    height: 25rem;
-    isolation: isolate;
-    display: flex;
-    gap: 4em;
-  }
+	.card {
+		position: relative;
+		height: 25rem;
+		isolation: isolate;
+		display: flex;
+		gap: 4em;
+	}
 
-  .clickable {
-    cursor: pointer;
-    transition: all 600ms;
-    border-radius: 0.5em;
-  }
+	.clickable {
+		cursor: pointer;
+		transition: all 600ms;
+		border-radius: 0.5em;
+	}
 
-  .clickable:active,
-  .clickable:hover {
-    transform: scale(1.05);
-  }
+	.clickable:active,
+	.clickable:hover {
+		transform: scale(1.05);
+	}
 
-  .clickable:active {
-    transform: translateY(1em);
-  }
+	.clickable:active {
+		transform: translateY(1em);
+	}
 
-  .card:nth-child(2n) {
-    flex-direction: row-reverse;
-  }
+	.card:nth-child(2n) {
+		flex-direction: row-reverse;
+	}
 
-  .card :global(img), .img-placeholder {
-    border-radius: 0.5rem;
-    height: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-  }
+	.card :global(.img-wrapper),
+	.img-placeholder {
+        max-height: 100%;
+        display: block;
 
-  .img-placeholder {
-    background-color: var(--color-surface);
-  }
+		height: 100%;
+		aspect-ratio: 1;
 
-  .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr min-content;
-    grid-template-areas: 
-      "content content"
-      "tags buttons";
-    gap: 1.5em;
-  }
+		& :global(img) {
+		    border-radius: 0.5rem;
+		}
+	}
 
-  .text {
-    grid-area: content;
-  }
+	.img-placeholder {
+		background-color: var(--color-surface);
+	}
 
-  .buttons {
-    grid-area: buttons;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    gap: 1rem;
-  }
+	.content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr min-content;
+		grid-template-areas:
+			'content content'
+			'tags buttons';
+		gap: 1.5em;
+	}
 
-  .card :global(h2) {
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 1;
-    text-transform: uppercase;
-  }
+	.text {
+		grid-area: content;
+	}
 
-  .card :global(p) {
-    font-size: 1.2rem;
-    line-height: 1.75;
-    font-weight: 450;
-    opacity: 0.7;
-    margin-top: 1rem;
-  }
+	.buttons {
+		grid-area: buttons;
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+		gap: 1rem;
+	}
 
-  .chips {
-    margin-top: auto;
-    display: flex;
-    gap: .75em;
-    grid-area: tags;
-    flex-wrap: wrap;
-  }
+	.card :global(h2) {
+		font-size: 3rem;
+		font-weight: 900;
+		line-height: 1;
+		text-transform: uppercase;
+	}
 
-  .chip {
-    font-weight: 600;
-    color: var(--color-on-chip);
-    background-color: var(--color-primary-500-25);
-    padding: 0.25rem 1rem;
-    border: 1px solid var(--color-primary);
-    border-radius: 3rem;
-  }
+	.card :global(p) {
+		font-size: 1.2rem;
+		line-height: 1.75;
+		font-weight: 450;
+		opacity: 0.7;
+		margin-top: 1rem;
+	}
 
-  @media screen and (max-width: 1200px) {
-    .card {
-      height: unset;
-      flex-direction: column;
-      width: 100%;
-      gap: 2em;
-      font-size: 12px;
-      align-items: center;
-    }
+	.chips {
+		margin-top: auto;
+		display: flex;
+		gap: 0.75em;
+		grid-area: tags;
+		flex-wrap: wrap;
+	}
 
-    .card:nth-child(2n) {
-      flex-direction: column;
-    }
+	.chip {
+		font-weight: 600;
+		color: var(--color-on-chip);
+		background-color: var(--color-primary-500-25);
+		padding: 0.25rem 1rem;
+		border: 1px solid var(--color-primary);
+		border-radius: 3rem;
+	}
 
-    .card :global(img), .img-placeholder {
-      height: unset;
-      max-width: 100%;
-      max-height: 15rem;
-      width: 15rem;
-    }
+	@media screen and (max-width: 1200px) {
+		.card {
+			height: unset;
+			flex-direction: column;
+			width: 100%;
+			gap: 2em;
+			font-size: 12px;
+			align-items: center;
+		}
 
-    .card :global(p) {
-      font-size: 1rem;
-      font-weight: 600;
-      opacity: 0.7;
-    }
+		.card:nth-child(2n) {
+			flex-direction: column;
+		}
 
-    .chips {
-      flex-wrap: wrap;
-    }
+		.card :global(.img-wrapper),
+		.img-placeholder {
+			height: unset;
+			max-width: 100%;
+			max-height: 15rem;
+			width: 15rem;
+		}
 
-    .buttons {
-      flex-wrap: wrap;
-    }
+		.card :global(p) {
+			font-size: 1rem;
+			font-weight: 600;
+			opacity: 0.7;
+		}
 
-    .content {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr min-content min-content;
-      grid-template-areas: 
-        "content"
-        "tags"
-        "buttons";
-      gap: 3em;
-    }
-  }
+		.chips {
+			flex-wrap: wrap;
+		}
+
+		.buttons {
+			flex-wrap: wrap;
+		}
+
+		.content {
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr min-content min-content;
+			grid-template-areas:
+				'content'
+				'tags'
+				'buttons';
+			gap: 3em;
+		}
+	}
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let url: string;
+  let { url }: { url: string } = $props();
 </script>
 
 <meta name="url" content={url} />

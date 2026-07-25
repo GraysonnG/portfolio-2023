@@ -1,7 +1,6 @@
 <script lang="ts">
-  export let icon: string;
+  let { icon }: { icon: string } = $props();
 </script>
 
 <meta property="og:image" content={icon} />
 <meta name="twitter:image" content={icon} />
-

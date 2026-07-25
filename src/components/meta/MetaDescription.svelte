@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let description: string;
+	let { description }: { description: string } = $props();
 </script>
 
 <meta name="description" content={description} />

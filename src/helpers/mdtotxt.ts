@@ -1,13 +1,13 @@
-import { marked, Renderer,  } from "marked";
-import type { MarkedOptions } from "marked";
-import { escape, unescape } from "lodash";
+import { marked, Renderer } from 'marked';
+import type { MarkedOptions } from 'marked';
+import { escape, unescape } from 'lodash';
 
-const block = (text: string) => text + "\n\n";
-const escapeBlock = (text: string) => escape(text) + "\n\n";
-const line = (text: string) => text + "\n";
+const block = (text: string) => text + '\n\n';
+const escapeBlock = (text: string) => escape(text) + '\n\n';
+const line = (text: string) => text + '\n';
 const inline = (text: string) => text;
-const newline = () => "\n";
-const empty = () => "";
+const newline = () => '\n';
+const empty = () => '';
 
 const TxtRenderer: Renderer = {
 	// Block elements
@@ -22,7 +22,7 @@ const TxtRenderer: Renderer = {
 	paragraph: block,
 	table: (header, body) => line(header + body),
 	tablerow: (text) => line(text.trim()),
-	tablecell: (text) => text + " ",
+	tablecell: (text) => text + ' ',
 	// Inline elements
 	strong: inline,
 	em: inline,
@@ -33,7 +33,7 @@ const TxtRenderer: Renderer = {
 	image: (_0, _1, text) => text,
 	text: inline,
 	// etc.
-	options: {},
+	options: {}
 };
 
 /**
@@ -49,10 +49,7 @@ const TxtRenderer: Renderer = {
  * @param options  the marked options
  * @returns the unmarked text
  */
-export function markdownToTxt(
-	markdown: string,
-	options?: MarkedOptions
-): string {
+export function markdownToTxt(markdown: string, options?: MarkedOptions): string {
 	const unmarked = marked(markdown, { ...options, renderer: TxtRenderer });
 	const unescaped = unescape(unmarked.toString());
 	const trimmed = unescaped.trim();
