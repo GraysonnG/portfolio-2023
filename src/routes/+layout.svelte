@@ -17,9 +17,9 @@
 
 	const duration = $state(800);
 	const x = $state(200);
-	var delay = $derived(duration + 10);
+	let delay = $derived(duration + 10);
 
-	var words = $derived((() => {
+	let words = $derived((() => {
         const home = ['front', 'end'];
         const path = page.url.pathname
 

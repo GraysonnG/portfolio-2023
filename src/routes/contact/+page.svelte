@@ -12,15 +12,15 @@
 	const emailSchema = string().required().email();
 	const messageSchema = string().max(messageMaxLength).required();
 
-	var name = $state('');
-	var email = $state('');
-	var message = $state('');
+	let name = $state('');
+	let email = $state('');
+	let message = $state('');
 
-	var errorName: string | null = $state(null);
-	var errorEmail: string | null = $state(null);
-	var errorMessage: string | null = $state(null);
+	let errorName: string | null = $state(null);
+	let errorEmail: string | null = $state(null);
+	let errorMessage: string | null = $state(null);
 
-	var sendEnabled = $derived(
+	let sendEnabled = $derived(
 		name != '' &&
 			email != '' &&
 			message != '' &&

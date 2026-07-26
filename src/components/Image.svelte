@@ -11,8 +11,8 @@
 
 	let { src, alt, clazz, children }: Props = $props()
 
-	var loaded = $state(false);
-	var vsrc = $state('');
+	let loaded = $state(false);
+	let vsrc = $state('');
 
 	const finished = () => {
 		setTimeout(() => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	var number = $state(0);
+	let number = $state(0);
 
 	const handleNumberButtonClicked = () => {
 		number += 1;

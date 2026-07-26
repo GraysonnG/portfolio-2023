@@ -9,7 +9,7 @@
 
 	let { data }: { data: { blog: BlogData; html: string } } = $props();
 
-	var date = $derived(new Date(data.blog.date));
+	let date = $derived(new Date(data.blog.date));
 
 	onMount(() => {
 		hljs.registerLanguage('kotlin', kotlin);

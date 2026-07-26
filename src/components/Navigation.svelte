@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 
-	var path = $derived(page.url.pathname)
-
+	let path = $derived(page.url.pathname)
 	let puck: HTMLElement;
 
 	const movePuckToRect = (rect: DOMRect) => {

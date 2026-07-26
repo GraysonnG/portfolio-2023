@@ -27,10 +27,10 @@
 	let clientWidth = $state(0);
 
 	// clientWidth / 40
-	var numShapes = $derived(Math.ceil(clientWidth / 40))
+	let numShapes = $derived(Math.ceil(clientWidth / 40))
 
 	// list of shapes - numShapes length
-	var shapes = $derived((() => {
+	let shapes = $derived((() => {
 		const arr: Shape[] = [];
 		for (let i = 0; i < numShapes; i++) {
 			arr.push(generateShape(i));
@@ -39,7 +39,7 @@
 	})())
 
 	// list of stars - 128 length
-	var stars = $derived(Array.from({ length: 128 }, () => {
+	let stars = $derived(Array.from({ length: 128 }, () => {
 		return { x: Math.random() * 100, y: Math.random() * 100 } as Point;
 	}));
 
