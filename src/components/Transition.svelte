@@ -1,24 +1,24 @@
 <script lang="ts">
-  import { navigating } from "$app/stores"
+	import { page } from '$app/state';
+	import type { Snippet } from 'svelte';
+	import { fly } from 'svelte/transition';
 
-  interface Transition {
-    transition: Function;
-    options: any;
-  }
+	interface Transition {
+		transition: Function;
+		options: any;
+	}
 
-  export let outtr: Transition
-  export let intr: Transition
-
-  $: trin = intr.transition
-  $: trout = outtr.transition
+	let { outtr, intr, children }: {
+	  outtr: Transition,
+	  intr: Transition,
+	  children: Snippet,
+	} = $props()
 </script>
 
-{#key $navigating}
-    {#if !$navigating}
-      <div in:trin={intr.options} out:trout={outtr.options}>
-        <slot />
-      </div>
-    {/if}
+{#key page.url.pathname}
+	<div in:fly={intr.options} out:fly|local={outtr.options}>
+		{@render children()}
+	</div>
 {/key}
 
 <style>

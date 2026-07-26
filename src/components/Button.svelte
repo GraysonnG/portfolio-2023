@@ -1,115 +1,115 @@
 <script lang="ts">
-	import type { Button } from "../api/client";
+	import type { Snippet } from 'svelte';
+	import type { Button } from '../api/client';
 
-  export let data: Button
-  export let disabled = false
-  export let onClick = () => {}
+	let { data, disabled = false, onClick = () => {}, children }: {
+        children?: Snippet;
+     	data: Button;
+     	disabled?: boolean;
+     	onClick?: () => void;
+	} = $props()
 
-  let external = data.url?.startsWith("http")
-  let icon = data.icon !== "none" ? data.icon : undefined
-  let flip = data.flip ? true : false
-  
+	let external = $derived(data.url?.startsWith('http'));
+	let icon = $derived(data.icon !== 'none' ? data.icon : undefined);
+	let flip = $derived(data.flip ? true : false);
 </script>
 
 {#if data.url}
-  {#if external} 
-    <a 
-      href={data.url}
-      class="button"
-      class:disabled
-      target="_blank"
-      rel="noreferrer noopener"
-      class:flip
-      class:primary={data.primary}>
-      {#if icon}
-        <i class={icon}/>
-      {/if}
-      {data.title}
-    </a>
-  {:else}
-    <a 
-      href={data.url}
-      class="button"
-      class:disabled
-      class:flip
-      class:primary={data.primary}>
-      {#if icon}
-        <i class={icon}/>
-      {/if}
-      {data.title}
-    </a>
-  {/if}
+	{#if external}
+		<a
+			href={data.url}
+			class="button"
+			class:disabled
+			target="_blank"
+			rel="noreferrer noopener"
+			class:flip
+			class:primary={data.primary}
+		>
+			{#if icon}
+				<i class={icon}></i>
+			{/if}
+			{data.title}
+		</a>
+	{:else}
+		<a href={data.url} class="button" class:disabled class:flip class:primary={data.primary}>
+			{#if icon}
+				<i class={icon}></i>
+			{/if}
+			{data.title}
+		</a>
+	{/if}
 {:else}
-  <button 
-    {disabled}
-    on:click={onClick}
-    class:primary={data.primary}
-    class:disabled
-    class:flip>
-    {#if icon}
-      <i class={icon}/>
-    {/if}
-    {data.title}
-  </button>
+	<button {disabled} onclick={onClick} class:primary={data.primary} class:disabled class:flip>
+		{#if icon}
+			<i class={icon}></i>
+		{/if}
+		{data.title}
+	</button>
 {/if}
 
 <style>
-  a, button {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    align-items: center;
-  }
+	a,
+	button {
+		display: flex;
+		gap: 0.5rem;
+		justify-content: center;
+		align-items: center;
+	}
 
-  a::selection, button::selection {
-    background: var(--color-light-08);
-    color: var(--color-primary);
-  }
+	a::selection,
+	button::selection {
+		background: var(--color-light-08);
+		color: var(--color-primary);
+	}
 
-  i {
-    position: relative;
-    top: -1px;
-  }
+	i {
+		position: relative;
+		top: -1px;
+	}
 
-  .flip {
-    flex-direction: row-reverse;
-  }
+	.flip {
+		flex-direction: row-reverse;
+	}
 
-  button, .button {
-    position: relative;
-    width: fit-content;
-    top: 0;
-    transition: all 600ms;
-    background-color: var(--color-button-variant);
-    color: var(--color-on-button-variant);
-    border: 1px solid var(--color-light);
+	button,
+	.button {
+		position: relative;
+		width: fit-content;
+		top: 0;
+		transition: all 600ms;
+		background-color: var(--color-button-variant);
+		color: var(--color-on-button-variant);
+		border: 1px solid var(--color-light);
 		box-shadow: 0 0.5em 2.5em rgba(0 0 0 / 0.2);
-    border-radius: 0.5em;
-    padding: 0.75em 3.5em;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 1em;
-  }
+		border-radius: 0.5em;
+		padding: 0.75em 3.5em;
+		font-weight: 700;
+		cursor: pointer;
+		text-decoration: none;
+		font-size: 1em;
+	}
 
-  button.primary, .button.primary {
-    border-color: transparent;
-    background-color: var(--color-button);
-    color: var(--color-on-button);
-    box-shadow: 0 0.5rem 1rem var(--color-primary-500-25);
-  }
+	button.primary,
+	.button.primary {
+		border-color: transparent;
+		background-color: var(--color-button);
+		color: var(--color-on-button);
+		box-shadow: 0 0.5rem 1rem var(--color-primary-500-25);
+	}
 
-  button:hover, .button:hover {
-    transform: scale(1.05);
-  }
+	button:hover,
+	.button:hover {
+		transform: scale(1.05);
+	}
 
-  button:active, .button:active {
-    transform: translateY(0.5em);
-  }
+	button:active,
+	.button:active {
+		transform: translateY(0.5em);
+	}
 
-  .disabled {
-    pointer-events: none;
-    background-color: var(--color-gray-500) !important;
-    box-shadow: none !important;
-  }
+	.disabled {
+		pointer-events: none;
+		background-color: var(--color-gray-500) !important;
+		box-shadow: none !important;
+	}
 </style>

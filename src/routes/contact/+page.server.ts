@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { client } from '../../api/sanityClient';
 
-export const prerender = true
+export const prerender = true;
 
 export async function load() {
 	const data = await client.getContactData();

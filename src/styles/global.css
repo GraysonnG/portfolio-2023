@@ -2,7 +2,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* Remove default margin */
@@ -16,37 +16,37 @@ figure,
 blockquote,
 dl,
 dd {
-  margin: 0;
+	margin: 0;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role='list'],
 ol[role='list'] {
-  list-style: none;
+	list-style: none;
 }
 
 /* Set core root defaults */
 html:focus-within {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
 }
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  text-decoration-skip-ink: auto;
+	text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
 img,
 picture {
-  max-width: 100%;
-  display: block;
+	max-width: 100%;
+	display: block;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -54,107 +54,108 @@ input,
 button,
 textarea,
 select {
-  font: inherit;
+	font: inherit;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-   scroll-behavior: auto;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }
 
 :root {
-  --color-black: rgba(0, 0, 0, 1);
-  --color-primary-100: rgb(180, 150, 255);
-  --color-primary-300: rgb(140, 52, 255);
-  --color-primary: rgba(112, 0, 255, 1);
-  --color-primary-700: rgba(57, 0, 129, 1);
-  --color-primary-500-25: rgba(112, 0, 255, 0.25);
-  --color-primary-900: rgba(12, 0, 28, 1);
-  --color-dark: rgba(13, 13, 13, 1);
-  --color-dark-08: rgba(13, 13, 13, 0.8);
-  --color-light: rgba(217, 217, 217, 1);
-  --color-light-08: rgba(217, 217, 217, 0.8);
-  --color-white: rgba(255, 255, 255, 1);
-  --color-white-02: rgba(255, 255, 255, 0.2);
-  --color-gray-500: rgb(100,100,100);
-  --color-gray-300: rgb(200, 200, 200);
-  --color-gray-800: rgb(25, 25, 25);
+	--color-black: rgba(0, 0, 0, 1);
+	--color-primary-100: rgb(180, 150, 255);
+	--color-primary-300: rgb(140, 52, 255);
+	--color-primary: rgba(112, 0, 255, 1);
+	--color-primary-700: rgba(57, 0, 129, 1);
+	--color-primary-500-25: rgba(112, 0, 255, 0.25);
+	--color-primary-900: rgba(12, 0, 28, 1);
+	--color-dark: rgba(13, 13, 13, 1);
+	--color-dark-08: rgba(13, 13, 13, 0.8);
+	--color-light: rgba(217, 217, 217, 1);
+	--color-light-08: rgba(217, 217, 217, 0.8);
+	--color-white: rgba(255, 255, 255, 1);
+	--color-white-02: rgba(255, 255, 255, 0.2);
+	--color-gray-500: rgb(100, 100, 100);
+	--color-gray-300: rgb(200, 200, 200);
+	--color-gray-800: rgb(25, 25, 25);
 
-  --color-surface: var(--color-light);
-  --color-on-surface: var(--color-dark);
-  --color-on-surface-alt: var(--color-white);
-  --color-surface-variant: var(--color-primary);
-  --color-on-surface-variant: var(--color-white);
-  --color-container: var(--color-gray-300);
-  --color-on-container: var(--color-dark);
-  --color-button: var(--color-primary);
-  --color-on-button: var(--color-white);
-  --color-button-variant: transparent;
-  --color-on-button-variant: var(--color-on-surface);
-  --color-chip: var(--color-primary-500-25);
-  --color-on-chip: var(--color-primary-700);
-  --color-chip-variant: var(--color-primary-500-25);
-  --color-on-chip-variant: var(--color-primary);
+	--color-surface: var(--color-light);
+	--color-on-surface: var(--color-dark);
+	--color-on-surface-alt: var(--color-white);
+	--color-surface-variant: var(--color-primary);
+	--color-on-surface-variant: var(--color-white);
+	--color-container: var(--color-gray-300);
+	--color-on-container: var(--color-dark);
+	--color-button: var(--color-primary);
+	--color-on-button: var(--color-white);
+	--color-button-variant: transparent;
+	--color-on-button-variant: var(--color-on-surface);
+	--color-chip: var(--color-primary-500-25);
+	--color-on-chip: var(--color-primary-700);
+	--color-chip-variant: var(--color-primary-500-25);
+	--color-on-chip-variant: var(--color-primary);
 
-  --color-decoration: var(--color-container);
-  --color-decoration-split: var(--color-primary-100);
+	--color-decoration: var(--color-container);
+	--color-decoration-split: var(--color-primary-100);
 
-  --container-width: 1400px;
+	--container-width: 1400px;
 }
 
-::selection, ::-moz-selection {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  opacity: 1;
+::selection,
+::-moz-selection {
+	background-color: var(--color-primary);
+	color: var(--color-white);
+	opacity: 1;
 }
 
 html {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 body {
-  font-family: 'Mona Sans', 'Roboto', sans-serif;
-  background-color: var(--color-surface);
-  color: var(--color-on-surface);
-  max-height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-gutter: auto;
+	font-family: 'Mona Sans', 'Roboto', sans-serif;
+	background-color: var(--color-surface);
+	color: var(--color-on-surface);
+	max-height: 100vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	scrollbar-gutter: auto;
 }
 
 .container {
-  margin-inline: auto;
-  max-width: var(--container-width);
+	margin-inline: auto;
+	max-width: var(--container-width);
 }
 
 @media screen and (min-width: 1200px) {
-  body {
-    scrollbar-gutter: stable;
-  }
+	body {
+		scrollbar-gutter: stable;
+	}
 }
 
 body.dark {
-  /* Dark Mode */
-    --color-surface: #222;
-    --color-container: var(--color-gray-800);
-    --color-on-container: var(--color-light);
-    --color-on-surface: #eee;
-    --color-on-surface-alt: #333;
-    --color-chip: var(--color-primary-700);
-    --color-on-chip: var(--color-light);
-    --color-button-variant: var(--color-dark-08);
-    --color-on-button-variant: var(--color-on-surface);
-    --color-decoration: var(--color-container);
-    --color-decoration-split: var(--color-primary-700);
+	/* Dark Mode */
+	--color-surface: #222;
+	--color-container: var(--color-gray-800);
+	--color-on-container: var(--color-light);
+	--color-on-surface: #eee;
+	--color-on-surface-alt: #333;
+	--color-chip: var(--color-primary-700);
+	--color-on-chip: var(--color-light);
+	--color-button-variant: var(--color-dark-08);
+	--color-on-button-variant: var(--color-on-surface);
+	--color-decoration: var(--color-container);
+	--color-decoration-split: var(--color-primary-700);
 }

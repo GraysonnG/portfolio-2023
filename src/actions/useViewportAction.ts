@@ -18,6 +18,12 @@ declare namespace svelte.JSX {
 	}
 }
 
+declare module 'svelte/elements' {
+  export interface HTMLImgAttributes {
+    'onenterViewport'?: (e: CustomEvent) => void;
+  }
+}
+
 export default function viewport(element: Element) {
 	ensureIntersectionObserver();
 	intersectionObserver?.observe(element);
