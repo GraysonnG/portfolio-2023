@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
+	import { fly } from "svelte/transition";
 
 	interface Props {
 	  words: string[];
@@ -9,10 +9,10 @@
 	let { words, duration = 2400 }: Props = $props()
 </script>
 
-{#key words}
+{#key words.join('-')}
 	<div>
 		{#each { length: words.length > 1 ? words.length : 2 } as _, index}
-			<span in:fly={{ x: -100, duration, delay: duration + 10 }} out:fly={{ x: 100, duration }}>
+			<span in:fly|global={{ x: -100, duration, delay: duration + 10 }} out:fly|global={{ x: 100, duration }}>
 				{words[index % words.length]}
 			</span>
 		{/each}

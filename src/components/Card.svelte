@@ -24,6 +24,8 @@
 	  href = null
     }: Props = $props()
 
+	let finished = $state(false)
+
 
 	const onClick = () => {
 		if (href) {

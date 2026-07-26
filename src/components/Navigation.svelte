@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
+	import { page } from '$app/state';
 
-	var path = $derived($page.url.pathname)
+	var path = $derived(page.url.pathname)
 
 	let puck: HTMLElement;
 
@@ -36,28 +35,10 @@
 		movePuckToCurrentElement();
 	};
 
-	onMount(() => {
-		const currentElement = document.querySelector('.active');
-		if (currentElement) {
-			setTimeout(() => {
-				const rect = currentElement.getBoundingClientRect();
-				movePuckToRect(rect);
-			}, 100);
-		}
-
-		const unsub = page.subscribe((page) => {
-			if (page.route.id) {
-				const element = document.querySelector(`a[href~="${page.route.id}"]`);
-				if (!element) return;
-				const rect = element.getBoundingClientRect();
-				movePuckToRect(rect);
-			}
-		});
-
-		return () => {
-			unsub();
-		};
-	});
+	$effect(() => {
+	    path;
+	    movePuckToCurrentElement();
+	})
 </script>
 
 <svelte:window on:resize={movePuckToCurrentElement} />
@@ -121,20 +102,6 @@
 						<i class="fa-solid fa-table-list"></i>
 					</a>
 				</li>
-				<!--        <li>-->
-				<!--          <a -->
-				<!--            on:mouseover={handleMouseOver} on:focus={() => {}}-->
-				<!--            href="/blog" -->
-				<!--            class:active={path.includes("blog")}>Blog</a>-->
-				<!--          <a -->
-				<!--            on:mouseover={handleMouseOver} on:focus={() => {}}-->
-				<!--            aria-hidden="true"-->
-				<!--            href="/blog" -->
-				<!--            class={"mobile"}-->
-				<!--            class:active={path.includes("blog")}>-->
-				<!--            <i class="fa-solid fa-square-rss"></i>-->
-				<!--          </a>-->
-				<!--        </li>-->
 				<li>
 					<a
 						onmouseover={handleMouseOver}

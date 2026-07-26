@@ -2,7 +2,7 @@
 	import '../styles/global.css';
 	import '../styles/fonts.css';
 	import Navigation from '../components/Navigation.svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { fly } from 'svelte/transition';
 	import Transition from '../components/Transition.svelte';
 	import hero from '../assets/anime-hero.webp';
@@ -19,17 +19,17 @@
 	const x = $state(200);
 	var delay = $derived(duration + 10);
 
-	const getWords = (path: string): string[] => {
-		const home = ['front', 'end'];
+	var words = $derived((() => {
+        const home = ['front', 'end'];
+        const path = page.url.pathname
 
-		switch (path) {
-			case '':
-			case '/':
-				return home;
-			default:
-				return [...path.split('/').filter((p) => p != '')];
-		}
-	};
+       	switch (path) {
+      		case '/':
+       			return home;
+      		default:
+       			return [...path.split('/').filter((p) => p != '')];
+       	}
+	})())
 
 	let { children } = $props()
 
@@ -61,12 +61,12 @@
 	</Transition>
 </main>
 
-<Watermark words={getWords($page.url.pathname)} duration={duration * 2} />
+<Watermark {words} duration={duration * 2} />
 
 <ScrollIndicator />
 <!--<ColorModeToggle isSplit={isSplit($page.route.id)} />-->
 
-{#if isSplit($page.route.id)}
+{#if isSplit(page.route.id)}
 	<div bind:this={panel} transition:shrink={{ direction: 'right', duration: duration }}>
 		<img src={hero} alt="" />
 	</div>
