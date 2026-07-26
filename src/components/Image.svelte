@@ -29,28 +29,19 @@
     {@render children()}
 {/if}
 
-
-<div class="img-wrapper">
-    <img
-    	class={clazz}
-    	use:viewport
-    	onenterViewport={loadImage}
-    	onload={finished}
-    	class:loaded
-    	{alt}
-    	src={vsrc}
-    />
-    <img
-        class={clazz + " shadow"}
-    	class:loaded
-    	{alt}
-    	src={vsrc}
-     />
-</div>
+<img
+   	class={clazz}
+   	use:viewport
+   	onenterViewport={loadImage}
+   	onload={finished}
+   	class:loaded
+   	{alt}
+   	src={vsrc}
+/>
 
 <style>
 	img {
-        width: 100%;
+	    display: block;
         opacity: 1;
 		transition:
 			opacity 1000ms,
@@ -64,22 +55,5 @@
 
 	img:hover {
 		scale: 1.05;
-	}
-
-	div {
-	    position: relative;
-	    isolation: isolate;
-	}
-
-	img.shadow {
-	    position: absolute;
-		z-index: -1;
-		inset: 0;
-		filter: blur(1em);
-		opacity: 0.5;
-
-		&:hover {
-		    scale: 1;
-		}
 	}
 </style>

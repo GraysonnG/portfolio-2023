@@ -99,17 +99,13 @@
 		flex-direction: row-reverse;
 	}
 
-	.card :global(.img-wrapper),
+	.card :global(img),
 	.img-placeholder {
         max-height: 100%;
         display: block;
-
+        border-radius: 0.5rem;
 		height: 100%;
 		aspect-ratio: 1;
-
-		& :global(img) {
-		    border-radius: 0.5rem;
-		}
 	}
 
 	.img-placeholder {
@@ -184,7 +180,7 @@
 			flex-direction: column;
 		}
 
-		.card :global(.img-wrapper),
+		.card :global(img),
 		.img-placeholder {
 			height: unset;
 			max-width: 100%;
