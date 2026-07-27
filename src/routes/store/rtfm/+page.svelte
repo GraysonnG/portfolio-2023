@@ -1,6 +1,39 @@
 <script lang="ts">
 	import Image from "../../../components/Image.svelte";
 
+	let enshitificationLevel = $state(0)
+
+	const price: string[] = [
+   	    "Free",
+     	"$1050",
+     	"$5/m",
+        "$100/m",
+        "Way too fucking much"
+	]
+
+	const title: string[] = [
+	    "RTFM - Hard Cover",
+		"RTFM - Hard Cover",
+		"RFTM - DIGITAL ONLY",
+		"AI RTFM - DIGITAL ONLY",
+		"It's Just An SUV Now"
+	]
+
+	const maxColors: number[] = [
+	    5,
+		5,
+		3,
+		1,
+		1,
+	]
+
+	const reviews: number[] = [
+        5,
+        5,
+        4,
+        1,
+        1,
+	]
 
     const colors: Record<string, string> = {
       "Navy":"#01295F;",
@@ -10,10 +43,11 @@
       "Rosey Cheeks":"#FD151B;"
     }
 
-    let selectedColor = $state("Navy")
+    let selectedIndex = $state(0)
+    let selectedColor = $derived(Object.keys(colors)[selectedIndex])
 
     function selectColor(index: number) {
-      selectedColor = Object.keys(colors)[index];
+      selectedIndex = index
       const elements = document.querySelectorAll(".color-item");
       elements.forEach(element => {
         element.classList.remove("selected");
@@ -21,40 +55,60 @@
 
       elements[index].classList.add("selected")
     }
+
+    function enshitify() {
+      if (enshitificationLevel < 4) {
+        enshitificationLevel += 1
+        selectedColor = Object.keys(colors)[Math.min(selectedIndex, maxColors[enshitificationLevel] - 1)]
+      } else {
+        enshitificationLevel = 0
+      }
+    }
 </script>
 
 <section class="container">
-    <div class="product-image" style="--product-color: {colors[selectedColor]};">
-        <Image src="/book.jpg" />
+    <div class="product-image" style="--product-color: {colors[selectedColor]};" class:tint={enshitificationLevel < 4}>
+        {#if enshitificationLevel < 4}
+            <Image src="/book.jpg" />
+        {:else}
+            <Image src="/suv.jpg" />
+        {/if}
     </div>
     <div class="product-menu">
-        <h1>RTFM - Hard Cover</h1>
+        <h1>{title[enshitificationLevel]}</h1>
         <h2>For when you don't follow the instructions.</h2>
         <div class="price-rating">
-            <div class="price"><h3>Free&nbsp;</h3><h3 class="sale">$Priceless</h3></div>
-            <div>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+            <div class="price"><h3>{price[enshitificationLevel]}&nbsp;</h3></div>
+            <div class="rating">
+                {#each { length: reviews[enshitificationLevel] } as _ }
+                    <i class="fa-solid fa-star"></i>
+                {/each}
+                {#each { length: 5 - reviews[enshitificationLevel] } as _ }
+                    <i class="fa-regular fa-star"></i>
+                {/each}
                 <span>(1337)</span>
             </div>
         </div>
-        <h4>Selected Color: {selectedColor}</h4>
+        {#if enshitificationLevel < 4}
+            <h4>Selected Color: {selectedColor}</h4>
+        {:else}
+            <h4>You get black ok, fuck your personality.</h4>
+        {/if}
         <div class="color-selector">
-            <button title="" onclick={() => { selectColor(0) }} class="color-item selected" id="color-1" style="--item-color: #01295F;"></button>
-            <button title="" onclick={() => { selectColor(1) }} class="color-item" id="color-2" style="--item-color: #437F97;"></button>
-            <button title="" onclick={() => { selectColor(2) }} class="color-item" id="color-3" style="--item-color: #849324;"></button>
-            <button title="" onclick={() => { selectColor(3) }} class="color-item" id="color-4" style="--item-color: #FFB30F;"></button>
-            <button title="" onclick={() => { selectColor(4) }} class="color-item" id="color-5" style="--item-color: #FD151B;"></button>
+            {#if enshitificationLevel < 4}
+                {#each Object.entries(colors).slice(0, maxColors[enshitificationLevel]) as color, i}
+                   <button title="" onclick={() => { selectColor(i) }} class="color-item" class:selected={selectedColor == color[0]} id="color-{i}" style="--item-color: {color[1]};"></button>
+                {/each}
+            {:else}
+                <button title="" class="color-item" class:selected={true} id="color-5" style="--item-color: #000;"></button>
+            {/if}
         </div>
 
         <div class="fake-section">Details <i class="fa-regular fa-plus"></i></div>
         <div class="fake-section">Sizing <i class="fa-regular fa-plus"></i></div>
         <div class="fake-section">Reviews <i class="fa-regular fa-plus"></i></div>
         <div class="cart">
-            <button>Purchase Now <i class="fa-solid fa-cart-flatbed"></i></button>
+            <button onclick={() => enshitify()}>Enshitify My Product <i class="fa-solid fa-cart-flatbed"></i></button>
         </div>
     </div>
 </section>
@@ -78,7 +132,7 @@
     .product-image{
         position: relative;
 
-        &::after {
+        &.tint::after {
             position: absolute;
             content: "";
             background-color: var(--product-color);

@@ -5,5 +5,9 @@ const FA_SOURCE = `https://kit.fontawesome.com/${FONT_AWESOME_KIT_ID}.js`;
 
 export async function GET({ url }: RequestEvent) {
 	const res = await fetch(FA_SOURCE);
-	return new Response(res.body);
+  return new Response(res.body, {
+    headers: {
+      'Content-Type': res.headers.get("content-type") ?? 'application/javascript'
+    }
+	});
 }
